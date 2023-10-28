@@ -53,6 +53,7 @@ public class PlayerBlackholeState : PlayerState
       }
     }
 
-    // We exit state in blackhole kills controller when all of the attacks are over
+    if (player.skill.blackhole.SkillCompleted())
+      stateMachine.ChangeState(player.airState);
   }
 }
