@@ -3524,6 +3524,7 @@ MonoBehaviour:
   canCreateCloneOnCounterAttack: 1
   canDuplicateClone: 1
   changeToDuplicate: 35
+  crystalInsteadOfClone: 1
 --- !u!114 &1076512202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3569,7 +3570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
-  amountOfAttacks: 5
+  amountOfAttacks: 15
   cloneCooldown: 0.35
   blackholeDuration: 4
   blackholePrefab: {fileID: 6176559144597863361, guid: f0a939835b2c6a74db2250c9fe8395ac, type: 3}
@@ -3592,10 +3593,10 @@ MonoBehaviour:
   crystalDuration: 1.5
   crystalPrefab: {fileID: 4594469989137935916, guid: 3a1d0b6a974424c40bd0a3a655eeac34, type: 3}
   cloneInsteadOfCrystal: 1
-  canExplode: 0
-  canMoveToEnemy: 0
+  canExplode: 1
+  canMoveToEnemy: 1
   moveSpeed: 4
-  canUseMultiStacks: 0
+  canUseMultiStacks: 1
   amountOfStacks: 3
   multiStackCooldown: 4
   useTimeWindow: 2.5

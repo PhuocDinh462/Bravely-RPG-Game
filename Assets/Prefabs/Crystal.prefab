@@ -120,7 +120,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a15498ad12b37d649bc5aa0f0db67473, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growSpeed: 3.5
+  whatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!58 &8099924200190618869
 CircleCollider2D:
   m_ObjectHideFlags: 0
