@@ -3589,6 +3589,14 @@ MonoBehaviour:
   canExplode: 1
   canMoveToEnemy: 1
   moveSpeed: 4
+  canUseMultiStacks: 1
+  amountOfStacks: 3
+  multiStackCooldown: 4
+  useTimeWindow: 2.5
+  crystalLeft:
+  - {fileID: 4594469989137935916, guid: 3a1d0b6a974424c40bd0a3a655eeac34, type: 3}
+  - {fileID: 4594469989137935916, guid: 3a1d0b6a974424c40bd0a3a655eeac34, type: 3}
+  - {fileID: 4594469989137935916, guid: 3a1d0b6a974424c40bd0a3a655eeac34, type: 3}
 --- !u!1 &1125109999
 GameObject:
   m_ObjectHideFlags: 0
@@ -5946,8 +5954,8 @@ SceneRoots:
   - {fileID: 8958106}
   - {fileID: 1621297444}
   - {fileID: 1317559125}
-  - {fileID: 1076512200}
   - {fileID: 3156773306547762240}
+  - {fileID: 1076512200}
   - {fileID: 1734817088}
   - {fileID: 1895276922}
   - {fileID: 740470556}
