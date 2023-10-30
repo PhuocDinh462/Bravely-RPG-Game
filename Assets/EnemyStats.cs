@@ -13,10 +13,16 @@ public class EnemyStats : CharacterStats
     enemy = GetComponent<Enemy>();
   }
 
-  public override void DoDamage(CharacterStats _targetStats)
+  public override void TakeDamage(int _damage)
   {
-    base.DoDamage(_targetStats);
+    base.TakeDamage(_damage);
 
     enemy.DamageEffect();
+  }
+
+  protected override void Die()
+  {
+    base.Die();
+    enemy.Die();
   }
 }

@@ -24,6 +24,7 @@ public class Enemy : Entity
   public float playerDetectDistance;
 
   public EnemyStateMachine stateMachine { get; private set; }
+  public string lastAnimBoolName { get; private set; }
 
   protected override void Awake()
   {
@@ -36,6 +37,11 @@ public class Enemy : Entity
   {
     base.Update();
     stateMachine.currentState.Update();
+  }
+
+  public virtual void AssignLastAnimName(string _animBoolName)
+  {
+    lastAnimBoolName = _animBoolName;
   }
 
   public virtual void FreezeTime(bool _timeFrozen)
