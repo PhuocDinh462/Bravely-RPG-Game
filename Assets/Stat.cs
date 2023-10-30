@@ -20,12 +20,12 @@ public class Stat
     return finalValue;
   }
 
-  public void addModifier(int _modifier)
+  public void AddModifier(int _modifier)
   {
     modifiers.Add(_modifier);
   }
 
-  public void removeModifier(int _modifier)
+  public void RemoveModifier(int _modifier)
   {
     modifiers.RemoveAt(_modifier);
   }
