@@ -41,12 +41,14 @@ public class CharacterStats : MonoBehaviour
   private float ignitedDamageTimer;
   private int igniteDamage;
 
-  [SerializeField] private int currentHealth;
+  public int currentHealth;
+
+  public System.Action onHealthChanged;
 
   protected virtual void Start()
   {
     critPower.SetDefaultValue(150);
-    currentHealth = maxHealth.GetValue();
+    currentHealth = GetMaxHealthValue();
   }
 
   protected virtual void Update()
@@ -68,8 +70,7 @@ public class CharacterStats : MonoBehaviour
 
     if (ignitedDamageTimer < 0 && isIgnited)
     {
-      Debug.Log("Take burn damage " + igniteDamage);
-      currentHealth -= igniteDamage;
+      DecreaseHealthBy(igniteDamage);
 
       if (currentHealth < 0)
         Die();
@@ -175,10 +176,18 @@ public class CharacterStats : MonoBehaviour
 
   public virtual void TakeDamage(int _damage)
   {
-    currentHealth -= _damage;
+    DecreaseHealthBy(_damage);
 
     if (currentHealth < 0)
       Die();
+  }
+
+  protected virtual void DecreaseHealthBy(int _damage)
+  {
+    currentHealth -= _damage;
+
+    if (onHealthChanged != null)
+      onHealthChanged();
   }
 
   protected virtual void Die()
@@ -224,5 +233,10 @@ public class CharacterStats : MonoBehaviour
     float totalCritPower = (critPower.GetValue() + strength.GetValue()) * .01f;
     float critDamage = _damage * totalCritPower;
     return Mathf.RoundToInt(critDamage);
+  }
+
+  public int GetMaxHealthValue()
+  {
+    return maxHealth.GetValue() + vitality.GetValue() * 5;
   }
 }
