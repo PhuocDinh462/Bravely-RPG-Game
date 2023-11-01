@@ -11,7 +11,7 @@ public class CharacterStats : MonoBehaviour
   [Header("Major stats")]
   public Stat strength; // 1 point increase damage by 1 and crit.power by 1%
   public Stat agility;  // 1 point increase evasion by 1% and crit.chance by 1%
-  public Stat intelligence; // 1 point increase magic damge by 1 and magic resistance by 3
+  public Stat intelligence; // 1 point increase magic damage by 1 and magic resistance by 3
   public Stat vitality; // 1 point increase health by 3 or 5 points
 
   [Header("Offensive stats")]
@@ -171,6 +171,8 @@ public class CharacterStats : MonoBehaviour
       isChilled = _chill;
       chilledTimer = ailmentDuration;
 
+      float _slowPercentage = .2f;
+      GetComponent<Entity>().SlowEntityBy(_slowPercentage, ailmentDuration);
       fx.ChillFxFor(ailmentDuration);
     }
 
@@ -224,7 +226,7 @@ public class CharacterStats : MonoBehaviour
     if (isShocked)
       totalEvasion += 20;
 
-    if (UnityEngine.Random.Range(0, 100) < totalEvasion)
+    if (Random.Range(0, 100) < totalEvasion)
       return true;
 
     return false;
