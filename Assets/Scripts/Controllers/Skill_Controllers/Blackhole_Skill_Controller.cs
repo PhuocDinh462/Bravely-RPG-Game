@@ -16,10 +16,10 @@ public class Blackhole_Skill_Controller : MonoBehaviour
   private bool canShrink;
   private bool canCreateHotKey = true;
   private bool cloneAttackReleased;
-  private bool playerCanDisapear = true;
+  private bool playerCanDisappear = true;
 
   private int amountOfAttacks = 4;
-  private float cloneAttaclCooldown = .3f;
+  private float cloneAttackCooldown = .3f;
   private float cloneAttackTimer;
 
   private List<Transform> targets = new List<Transform>();
@@ -27,18 +27,18 @@ public class Blackhole_Skill_Controller : MonoBehaviour
 
   public bool playerCanExitState { get; private set; }
 
-  public void SetupBlackhole(float _maxSize, float _growSpeed, float _shrinkSpeed, int _amountOfAttacks, float _cloneAttaclCooldown, float _blackholeDuration)
+  public void SetupBlackhole(float _maxSize, float _growSpeed, float _shrinkSpeed, int _amountOfAttacks, float _cloneAttackCooldown, float _blackholeDuration)
   {
     maxSize = _maxSize;
     growSpeed = _growSpeed;
     shrinkSpeed = _shrinkSpeed;
     amountOfAttacks = _amountOfAttacks;
-    cloneAttaclCooldown = _cloneAttaclCooldown;
+    cloneAttackCooldown = _cloneAttackCooldown;
 
     blackholeTimer = _blackholeDuration;
 
     if (SkillManager.instance.clone.crystalInsteadOfClone)
-      playerCanDisapear = false;
+      playerCanDisappear = false;
   }
 
   private void Update()
@@ -83,10 +83,10 @@ public class Blackhole_Skill_Controller : MonoBehaviour
     cloneAttackReleased = true;
     canCreateHotKey = false;
 
-    if (playerCanDisapear)
+    if (playerCanDisappear)
     {
-      playerCanDisapear = false;
-      PlayerManager.instance.player.MakeTransparent(true);
+      playerCanDisappear = false;
+      PlayerManager.instance.player.fx.MakeTransparent(true);
     }
   }
 
@@ -94,7 +94,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
   {
     if (cloneAttackTimer < 0 && cloneAttackReleased && amountOfAttacks > 0)
     {
-      cloneAttackTimer = cloneAttaclCooldown;
+      cloneAttackTimer = cloneAttackCooldown;
 
       int randomIndex = UnityEngine.Random.Range(0, targets.Count);
 
