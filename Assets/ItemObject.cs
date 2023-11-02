@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class ItemObject : MonoBehaviour
@@ -19,7 +16,9 @@ public class ItemObject : MonoBehaviour
   private void OnTriggerEnter2D(Collider2D collision)
   {
     if (collision.GetComponent<Player>())
-      Debug.Log("picked up item " + itemData.itemName);
-    Destroy(gameObject);
+    {
+      Inventory.instance.addItem(itemData);
+      Destroy(gameObject);
+    }
   }
 }
