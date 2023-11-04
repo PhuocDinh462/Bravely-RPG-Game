@@ -431,7 +431,7 @@ MonoBehaviour:
   ailmentDuration: 4
   shockStrikePrefab: {fileID: 6943973377042029279, guid: c1c49982436f8bd46b16b39a95153db5, type: 3}
   currentHealth: 0
-  level: 7
+  level: 1
   percentageModifier: 0.4
 --- !u!70 &8958111
 CapsuleCollider2D:
@@ -5852,13 +5852,13 @@ MonoBehaviour:
     baseValue: 1
     modifiers: 
   fireDamage:
-    baseValue: 50
+    baseValue: 1
     modifiers: 
   iceDamage:
     baseValue: 2
     modifiers: 
   lightningDamage:
-    baseValue: 3
+    baseValue: 5
     modifiers: 
   isIgnited: 0
   isChilled: 0
@@ -6907,6 +6907,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 23d0649c0d50ced40a4055ef0fe25613, type: 2}
   - {fileID: 11400000, guid: 228e1760f345a01488d402143bf426dc, type: 2}
   - {fileID: 11400000, guid: bad279caedb46fd40860e4354cf5230e, type: 2}
+  - {fileID: 11400000, guid: f53fc58c7dca9de4bbe6e78aa4fb1be3, type: 2}
   equipment: []
   inventory: []
   stash: []
