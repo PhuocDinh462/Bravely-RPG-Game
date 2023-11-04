@@ -431,7 +431,7 @@ MonoBehaviour:
   ailmentDuration: 4
   shockStrikePrefab: {fileID: 6943973377042029279, guid: c1c49982436f8bd46b16b39a95153db5, type: 3}
   currentHealth: 0
-  level: 1
+  level: 7
   percentageModifier: 0.4
 --- !u!70 &8958111
 CapsuleCollider2D:
@@ -488,7 +488,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ebdfe2d714c42244fa8214fba278d633, type: 2}
   - {fileID: 11400000, guid: 23d0649c0d50ced40a4055ef0fe25613, type: 2}
   dropPrefab: {fileID: 1248272806044062830, guid: 4c982d1ba00bf184eb591530d1e2c663, type: 3}
-  item: {fileID: 11400000, guid: ebdfe2d714c42244fa8214fba278d633, type: 2}
 --- !u!1 &13981996
 GameObject:
   m_ObjectHideFlags: 0
@@ -5660,6 +5659,7 @@ GameObject:
   - component: {fileID: 1198040190}
   - component: {fileID: 1198040192}
   - component: {fileID: 1198040193}
+  - component: {fileID: 1198040194}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -5866,6 +5866,23 @@ MonoBehaviour:
   ailmentDuration: 4
   shockStrikePrefab: {fileID: 6943973377042029279, guid: c1c49982436f8bd46b16b39a95153db5, type: 3}
   currentHealth: 0
+--- !u!114 &1198040194
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198040187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47173730006477546b905c1b80a20c8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  possibleItemDrop: 0
+  possibleDrop: []
+  dropPrefab: {fileID: 1248272806044062830, guid: 4c982d1ba00bf184eb591530d1e2c663, type: 3}
+  chanceToLooseItems: 20
+  chanceToLooseMaterials: 75
 --- !u!1 &1230649248
 GameObject:
   m_ObjectHideFlags: 0
@@ -6881,6 +6898,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 390fce872a788a3458dff96cf0a75b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingItems:
+  - {fileID: 11400000, guid: 228e1760f345a01488d402143bf426dc, type: 2}
+  - {fileID: 11400000, guid: 228e1760f345a01488d402143bf426dc, type: 2}
+  - {fileID: 11400000, guid: bad279caedb46fd40860e4354cf5230e, type: 2}
+  - {fileID: 11400000, guid: b96b729a87daa384d8f8a1ee385549df, type: 2}
+  - {fileID: 11400000, guid: ebdfe2d714c42244fa8214fba278d633, type: 2}
+  - {fileID: 11400000, guid: 23d0649c0d50ced40a4055ef0fe25613, type: 2}
+  - {fileID: 11400000, guid: 228e1760f345a01488d402143bf426dc, type: 2}
+  - {fileID: 11400000, guid: bad279caedb46fd40860e4354cf5230e, type: 2}
   equipment: []
   inventory: []
   stash: []
