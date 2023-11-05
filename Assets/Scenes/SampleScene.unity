@@ -6261,7 +6261,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cooldown: 0
-  swordType: 2
+  swordType: 3
   bounceAmount: 3
   bounceGravity: 5
   bounceSpeed: 20
@@ -7712,6 +7712,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: bad279caedb46fd40860e4354cf5230e, type: 2}
   - {fileID: 11400000, guid: f53fc58c7dca9de4bbe6e78aa4fb1be3, type: 2}
   - {fileID: 11400000, guid: 8a697801d6b426441b478704970b5c33, type: 2}
+  - {fileID: 11400000, guid: 6016033a1f145274ea6d6c7bd747d83e, type: 2}
   equipment: []
   inventory: []
   stash: []
