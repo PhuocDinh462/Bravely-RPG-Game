@@ -29,7 +29,7 @@ public class Buff_Effect : ItemEffect
 
   public override void ExecuteEffect(Transform _enemyPosition)
   {
-    stats = PlayerManager.instance.GetComponent<PlayerStats>();
+    stats = PlayerManager.instance.player.GetComponent<PlayerStats>();
     stats.IncreaseStatBy(buffAmount, buffDuration, StatToModify());
   }
 
