@@ -12983,6 +12983,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterUI: {fileID: 611224190}
+  skillTreeUI: {fileID: 61746955}
+  craftUI: {fileID: 586970591}
+  optionUI: {fileID: 793090564}
   itemTooltip: {fileID: 792784878}
   statToolTip: {fileID: 1049055536}
 --- !u!1 &1340282582
