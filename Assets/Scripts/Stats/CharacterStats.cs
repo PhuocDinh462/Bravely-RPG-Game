@@ -11,10 +11,10 @@ public enum StatType
   damage,
   critChance,
   critPower,
-  maxHealth,
+  health,
   armor,
   evasion,
-  magicResistance,
+  magicRes,
   fireDamage,
   iceDamage,
   lightningDamage,
@@ -374,10 +374,10 @@ public class CharacterStats : MonoBehaviour
     else if (_statType == StatType.damage) return damage;
     else if (_statType == StatType.critChance) return critChance;
     else if (_statType == StatType.critPower) return critPower;
-    else if (_statType == StatType.maxHealth) return maxHealth;
+    else if (_statType == StatType.health) return maxHealth;
     else if (_statType == StatType.armor) return armor;
     else if (_statType == StatType.evasion) return evasion;
-    else if (_statType == StatType.magicResistance) return magicResistance;
+    else if (_statType == StatType.magicRes) return magicResistance;
     else if (_statType == StatType.fireDamage) return fireDamage;
     else if (_statType == StatType.iceDamage) return iceDamage;
     else if (_statType == StatType.lightningDamage) return lightningDamage;

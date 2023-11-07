@@ -5,6 +5,7 @@ public class UI : MonoBehaviour
   [SerializeField] private GameObject characterUI;
 
   public UI_ItemTooltip itemTooltip;
+  public UI_StatToolTip statToolTip;
 
   // Start is called before the first frame update
   void Start()
