@@ -203,10 +203,7 @@ public class Inventory : MonoBehaviour
   public bool CanAddItem()
   {
     if (inventory.Count >= inventoryItemSlot.Length)
-    {
-      Debug.Log("No more space");
       return false;
-    }
 
     return true;
   }
