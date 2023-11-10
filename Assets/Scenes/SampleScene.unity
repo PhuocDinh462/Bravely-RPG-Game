@@ -15464,6 +15464,7 @@ GameObject:
   - component: {fileID: 1076512202}
   - component: {fileID: 1076512203}
   - component: {fileID: 1076512204}
+  - component: {fileID: 1076512205}
   m_Layer: 0
   m_Name: SkillManager
   m_TagString: Untagged
@@ -15533,8 +15534,6 @@ MonoBehaviour:
   clonePrefab: {fileID: 1760543894771081205, guid: e2c05bfcec73d1e4881371b5c46664aa, type: 3}
   cloneDuration: 1.5
   canAttack: 0
-  createCloneOnDashStart: 0
-  createCloneOnDashOver: 0
   canCreateCloneOnCounterAttack: 0
   canDuplicateClone: 0
   changeToDuplicate: 35
@@ -15618,6 +15617,26 @@ MonoBehaviour:
   - {fileID: 4594469989137935916, guid: 3a1d0b6a974424c40bd0a3a655eeac34, type: 3}
   - {fileID: 4594469989137935916, guid: 3a1d0b6a974424c40bd0a3a655eeac34, type: 3}
   - {fileID: 4594469989137935916, guid: 3a1d0b6a974424c40bd0a3a655eeac34, type: 3}
+--- !u!114 &1076512205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1076512197}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ba4464ba364ad846a95e784d3e689e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldown: 0
+  parryUnlockButton: {fileID: 2078050355}
+  parryUnlocked: 0
+  restoreUnlockButton: {fileID: 820457145}
+  restoreHealthPercentage: 0.05
+  restoreUnlocked: 0
+  parryWithMirageUnlockButton: {fileID: 514124669}
+  parryWithMirageUnlocked: 0
 --- !u!1 &1078597395
 GameObject:
   m_ObjectHideFlags: 0
