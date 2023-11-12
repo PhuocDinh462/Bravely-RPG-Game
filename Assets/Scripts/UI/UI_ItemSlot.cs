@@ -63,13 +63,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
   {
     if (item == null) return;
 
-    Vector2 mousePosition = Input.mousePosition;
-
-    float xOffset = mousePosition.x > 600 ? -150 : 150;
-    float yOffset = mousePosition.y > 250 ? 200 : 300;
-
     ui.itemTooltip.ShowToolTip(item.data as ItemData_Equipment);
-    ui.itemTooltip.transform.position = new Vector2(mousePosition.x + xOffset, mousePosition.y + yOffset);
   }
 
   public void OnPointerExit(PointerEventData eventData)
