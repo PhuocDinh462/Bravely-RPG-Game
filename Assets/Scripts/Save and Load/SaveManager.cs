@@ -14,6 +14,13 @@ public class SaveManager : MonoBehaviour
   private List<ISaveManager> saveManagers;
   private FileDataHandler dataHandler;
 
+  [ContextMenu("Delete save file")]
+  private void DeleteSavedData()
+  {
+    dataHandler = new FileDataHandler(Application.persistentDataPath, fileName);
+    dataHandler.Delete();
+  }
+
   private void Awake()
   {
     if (instance)
