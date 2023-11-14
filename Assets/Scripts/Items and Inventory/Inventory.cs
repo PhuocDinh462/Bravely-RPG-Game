@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEditorInternal.Profiling.Memory.Experimental;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour, ISaveManager
@@ -38,6 +39,7 @@ public class Inventory : MonoBehaviour, ISaveManager
 
   [Header("Data base")]
   public List<InventoryItem> loadedItems;
+  public List<ItemData_Equipment> loadedEquipment;
 
   private void Awake()
   {
@@ -63,11 +65,16 @@ public class Inventory : MonoBehaviour, ISaveManager
     equipmentSlot = equipmentSlotParent.GetComponentsInChildren<UI_EquipmentSlot>();
     statSlot = statSlotParent.GetComponentsInChildren<UI_StatSlot>();
 
-    AddStartingItems();
+    Invoke("AddStartingItems", .1f);
   }
 
   private void AddStartingItems()
   {
+    foreach (ItemData_Equipment item in loadedEquipment)
+    {
+      EquipItem(item);
+    }
+
     if (loadedItems.Count > 0)
     {
       foreach (InventoryItem item in loadedItems)
@@ -331,22 +338,38 @@ public class Inventory : MonoBehaviour, ISaveManager
         }
       }
     }
+
+    foreach (string loadedItemId in _data.equipmentId)
+    {
+      foreach (var item in GetItemDataBase())
+      {
+        if (item != null && loadedItemId == item.itemId)
+        {
+          loadedEquipment.Add(item as ItemData_Equipment);
+        }
+      }
+    }
   }
 
   public void SaveData(ref GameData _data)
   {
     _data.inventory.Clear();
+    _data.equipmentId.Clear();
 
     foreach (KeyValuePair<ItemData, InventoryItem> pair in inventoryDictionary)
-    {
       _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
-    }
+
+    foreach (KeyValuePair<ItemData, InventoryItem> pair in stashDictionary)
+      _data.inventory.Add(pair.Key.itemId, pair.Value.stackSize);
+
+    foreach (KeyValuePair<ItemData_Equipment, InventoryItem> pair in equipmentDictionary)
+      _data.equipmentId.Add(pair.Key.itemId);
   }
 
   private List<ItemData> GetItemDataBase()
   {
     List<ItemData> itemDataBase = new List<ItemData>();
-    string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Equipment" });
+    string[] assetNames = AssetDatabase.FindAssets("", new[] { "Assets/Data/Items" });
 
     foreach (string SOName in assetNames)
     {
