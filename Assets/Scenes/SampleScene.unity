@@ -21841,6 +21841,7 @@ MonoBehaviour:
   equipmentSlotParent: {fileID: 1858039283}
   statSlotParent: {fileID: 284569882}
   loadedItems: []
+  loadedEquipment: []
 --- !u!4 &1459263486
 Transform:
   m_ObjectHideFlags: 0
