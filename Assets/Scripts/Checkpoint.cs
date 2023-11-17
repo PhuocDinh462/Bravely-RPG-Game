@@ -26,6 +26,8 @@ public class Checkpoint : MonoBehaviour
   public void ActivateCheckpoint()
   {
     activationStatus = true;
-    anim.SetBool("active", true);
+    Invoke("SetActiveAnim", .1f);
   }
+
+  private void SetActiveAnim() => anim.SetBool("active", true);
 }

@@ -4,6 +4,7 @@ public class EnemyStats : CharacterStats
 {
   private Enemy enemy;
   private ItemDrop myDropSystem;
+  public Stat soulsDropAmount;
 
   [Header("Level details")]
   [SerializeField] private int level = 1;
@@ -13,6 +14,7 @@ public class EnemyStats : CharacterStats
 
   protected override void Start()
   {
+    soulsDropAmount.SetDefaultValue(100);
     ApplyLevelModifiers();
 
     base.Start();
@@ -23,26 +25,28 @@ public class EnemyStats : CharacterStats
 
   private void ApplyLevelModifiers()
   {
-    modify(strength);
-    modify(agility);
-    modify(intelligence);
-    modify(vitality);
+    Modify(strength);
+    Modify(agility);
+    Modify(intelligence);
+    Modify(vitality);
 
-    modify(damage);
-    modify(critChance);
-    modify(critPower);
+    Modify(damage);
+    Modify(critChance);
+    Modify(critPower);
 
-    modify(maxHealth);
-    modify(armor);
-    modify(evasion);
-    modify(magicResistance);
+    Modify(maxHealth);
+    Modify(armor);
+    Modify(evasion);
+    Modify(magicResistance);
 
-    modify(fireDamage);
-    modify(iceDamage);
-    modify(lightningDamage);
+    Modify(fireDamage);
+    Modify(iceDamage);
+    Modify(lightningDamage);
+
+    Modify(soulsDropAmount);
   }
 
-  private void modify(Stat _stat)
+  private void Modify(Stat _stat)
   {
     for (int i = 1; i < level; i++)
     {
@@ -62,6 +66,7 @@ public class EnemyStats : CharacterStats
     base.Die();
     enemy.Die();
 
+    PlayerManager.instance.currency += soulsDropAmount.GetValue();
     myDropSystem.GenerateDrop();
   }
 }

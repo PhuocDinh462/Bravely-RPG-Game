@@ -431,6 +431,9 @@ MonoBehaviour:
   ailmentDuration: 4
   shockStrikePrefab: {fileID: 6943973377042029279, guid: c1c49982436f8bd46b16b39a95153db5, type: 3}
   currentHealth: 0
+  soulsDropAmount:
+    baseValue: 0
+    modifiers: 
   level: 4
   percentageModifier: 0.4
 --- !u!70 &8958111
@@ -14080,6 +14083,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   checkpoints: []
+  closestCheckpointId: 
+  lostCurrencyPrefab: {fileID: 3165753692384984483, guid: 592cde642958a864b8d51797406fa7b7, type: 3}
+  lostCurrencyAmount: 0
+  lostCurrencyX: 0
+  lostCurrencyY: 0
 --- !u!4 &818165169
 Transform:
   m_ObjectHideFlags: 0
@@ -27946,6 +27954,8 @@ MonoBehaviour:
   blackholeImage: {fileID: 36960421}
   flaskImage: {fileID: 298037597}
   currentSouls: {fileID: 477299968}
+  soulsAmount: 0
+  increaseRate: 9999
 --- !u!114 &1938155683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -29870,6 +29880,10 @@ PrefabInstance:
     - target: {fileID: 1127791305405795999, guid: 1996c7c6f14c2524e822359cd224b4e1, type: 3}
       propertyPath: m_Name
       value: Checkpoint (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127791305405795999, guid: 1996c7c6f14c2524e822359cd224b4e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158488717022653497, guid: 1996c7c6f14c2524e822359cd224b4e1, type: 3}
       propertyPath: id
@@ -33112,6 +33126,10 @@ PrefabInstance:
     - target: {fileID: 1127791305405795999, guid: 1996c7c6f14c2524e822359cd224b4e1, type: 3}
       propertyPath: m_Name
       value: Checkpoint
+      objectReference: {fileID: 0}
+    - target: {fileID: 1127791305405795999, guid: 1996c7c6f14c2524e822359cd224b4e1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2158488717022653497, guid: 1996c7c6f14c2524e822359cd224b4e1, type: 3}
       propertyPath: id
