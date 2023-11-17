@@ -25878,6 +25878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3fedaac6485a2c40b3e5f2c394e9005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sfxMinimumDistance: 10
   sfx:
   - {fileID: 2077967820}
   - {fileID: 42804571}
