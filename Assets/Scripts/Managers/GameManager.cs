@@ -122,4 +122,6 @@ public class GameManager : MonoBehaviour, ISaveManager
 
     return closestCheckpoint;
   }
+
+  public void PauseGame(bool _pause) => Time.timeScale = _pause ? 0 : 1;
 }
