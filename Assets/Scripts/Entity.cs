@@ -73,6 +73,8 @@ public class Entity : MonoBehaviour
       knockbackDir = 1;
   }
 
+  public void SetupKnockbackPower(Vector2 _knockbackPower) => knockbackPower = _knockbackPower;
+
   protected virtual IEnumerator HitKnockback()
   {
     isKnocked = true;
@@ -81,6 +83,12 @@ public class Entity : MonoBehaviour
 
     yield return new WaitForSeconds(knockbackDuration);
     isKnocked = false;
+    SetupZeroKnockbackPower();
+  }
+
+  protected virtual void SetupZeroKnockbackPower()
+  {
+
   }
 
   #region Velocity
