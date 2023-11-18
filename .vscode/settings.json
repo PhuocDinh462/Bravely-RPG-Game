@@ -52,5 +52,5 @@
     "Temp/": true
   },
   "dotnet.defaultSolution": "Bravely-RPG-Game.sln",
-  "cSpell.words": ["Rigidbody"]
+  "cSpell.words": ["parametr", "Rigidbody"]
 }
