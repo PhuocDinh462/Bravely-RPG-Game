@@ -25,6 +25,9 @@ public class Checkpoint : MonoBehaviour
 
   public void ActivateCheckpoint()
   {
+    if (!activationStatus)
+      AudioManager.instance.PlaySFX(5, transform);
+
     activationStatus = true;
     Invoke("SetActiveAnim", .1f);
   }
