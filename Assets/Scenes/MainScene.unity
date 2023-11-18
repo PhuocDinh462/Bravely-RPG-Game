@@ -10216,7 +10216,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7670155, y: 2.3994775, z: -8.969403}
+  m_LocalPosition: {x: -2.3670158, y: 2.3994775, z: -8.969403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -22359,7 +22359,7 @@ Transform:
   m_GameObject: {fileID: 1198040187}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.31, y: 7.4, z: 0}
+  m_LocalPosition: {x: 19.24, y: -1.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -29885,7 +29885,7 @@ Transform:
   m_GameObject: {fileID: 1820128930}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.7670155, y: 2.3994775, z: -8.969403}
+  m_LocalPosition: {x: -2.3670158, y: 2.3994775, z: -8.969403}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -39123,6 +39123,26 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 759786951}
     m_Modifications:
+    - target: {fileID: 1784684138807007863, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.11
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275978431594696782, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
+      propertyPath: attackDistance
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275978431594696782, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
+      propertyPath: attackCheckRadius
+      value: 1.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275978431594696782, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
+      propertyPath: maxAttackCooldown
+      value: 0.55
+      objectReference: {fileID: 0}
+    - target: {fileID: 3275978431594696782, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
+      propertyPath: minAttackCooldown
+      value: 0.35
+      objectReference: {fileID: 0}
     - target: {fileID: 4524467751361213309, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton
