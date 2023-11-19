@@ -28419,6 +28419,8 @@ MonoBehaviour:
   igniteFx: {fileID: 38492414}
   chillFx: {fileID: 121753601}
   shockFx: {fileID: 1338582965}
+  hitFx: {fileID: 6266275826522965644, guid: ea759a2ebb5b44741a4468996cf9a900, type: 3}
+  criticalHitFx: {fileID: 2912196886204893131, guid: 1b9a57c02308a9b489fc5f6f85971aff, type: 3}
 --- !u!114 &1198040193
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -28447,7 +28449,7 @@ MonoBehaviour:
     baseValue: 10
     modifiers: 
   critChance:
-    baseValue: 0
+    baseValue: 15
     modifiers: 
   critPower:
     baseValue: 0
@@ -39503,7 +39505,7 @@ GameObject:
   - component: {fileID: 1814133246}
   - component: {fileID: 1814133245}
   m_Layer: 0
-  m_Name: FireSnow_FX
+  m_Name: Rain_FX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -52869,6 +52871,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 759786951}
     m_Modifications:
+    - target: {fileID: 3393523491518760136, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
+      propertyPath: critChance.baseValue
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4524467751361213309, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
       propertyPath: m_Name
       value: Enemy_Skeleton

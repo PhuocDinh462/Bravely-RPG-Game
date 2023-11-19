@@ -10041,6 +10041,8 @@ MonoBehaviour:
   igniteFx: {fileID: 7718175162146787906}
   chillFx: {fileID: 4979782912911593443}
   shockFx: {fileID: 2235767324454074644}
+  hitFx: {fileID: 6266275826522965644, guid: ea759a2ebb5b44741a4468996cf9a900, type: 3}
+  criticalHitFx: {fileID: 2912196886204893131, guid: 1b9a57c02308a9b489fc5f6f85971aff, type: 3}
 --- !u!70 &1148075765014300259
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
