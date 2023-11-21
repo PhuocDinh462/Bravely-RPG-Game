@@ -23459,6 +23459,7 @@ GameObject:
   - component: {fileID: 1198040192}
   - component: {fileID: 1198040193}
   - component: {fileID: 1198040194}
+  - component: {fileID: 1198040195}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -23598,6 +23599,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb935d493de1ca346b53d6dd54f806f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shakeMultiplier: 0.15
+  shakeSwordImpact: {x: 0.5, y: 0, z: 0}
+  shakeHighDamage: {x: 2, y: 2, z: 0}
   afterImagePrefab: {fileID: 3906176050487421286, guid: 7ca2fd8d4c5bd4c49816ed60ba18eef1, type: 3}
   colorLooseRate: 2
   afterImageCooldown: 0.035
@@ -23695,6 +23699,59 @@ MonoBehaviour:
   dropPrefab: {fileID: 1248272806044062830, guid: 4c982d1ba00bf184eb591530d1e2c663, type: 3}
   chanceToLooseItems: 20
   chanceToLooseMaterials: 75
+--- !u!114 &1198040195
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198040187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 180ecf9b41d478f468eb3e9083753217, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ImpulseDefinition:
+    m_ImpulseChannel: 1
+    m_ImpulseShape: 2
+    m_CustomImpulseShape:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+    m_ImpulseDuration: 0.2
+    m_ImpulseType: 0
+    m_DissipationRate: 0.25
+    m_RawSignal: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_RepeatMode: 0
+    m_Randomize: 1
+    m_TimeEnvelope:
+      m_AttackShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_DecayShape:
+        serializedVersion: 2
+        m_Curve: []
+        m_PreInfinity: 2
+        m_PostInfinity: 2
+        m_RotationOrder: 4
+      m_AttackTime: 0
+      m_SustainTime: 0.2
+      m_DecayTime: 0.7
+      m_ScaleWithImpact: 1
+      m_HoldForever: 0
+    m_ImpactRadius: 100
+    m_DirectionMode: 0
+    m_DissipationMode: 2
+    m_DissipationDistance: 100
+    m_PropagationSpeed: 343
+  m_DefaultVelocity: {x: 0, y: 0, z: 0}
 --- !u!1 &1203027605
 GameObject:
   m_ObjectHideFlags: 0
@@ -29882,6 +29939,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1820128932}
   - component: {fileID: 1820128931}
+  - component: {fileID: 1820128933}
   m_Layer: 0
   m_Name: Virtual Camera
   m_TagString: Untagged
@@ -29944,6 +30002,29 @@ Transform:
   - {fileID: 541124320}
   m_Father: {fileID: 2010545179}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1820128933
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1820128930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00b2d199b96b516448144ab30fb26aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ApplyAfter: 2
+  m_ChannelMask: 1
+  m_Gain: 1
+  m_Use2DDistance: 0
+  m_UseCameraSpace: 1
+  m_ReactionSettings:
+    m_SecondaryNoise: {fileID: 0}
+    m_AmplitudeGain: 1
+    m_FrequencyGain: 1
+    m_Duration: 1
+    m_NoiseOffsets: {x: 0, y: 0, z: 0}
 --- !u!1 &1842631806
 GameObject:
   m_ObjectHideFlags: 0
