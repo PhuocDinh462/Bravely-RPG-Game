@@ -1,5 +1,6 @@
 using Cinemachine;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class EntityFX : MonoBehaviour
@@ -7,11 +8,17 @@ public class EntityFX : MonoBehaviour
   private Player player;
   private SpriteRenderer sr;
 
+
+  [Header("Pop Up Text")]
+  [SerializeField] private GameObject popUpTextPrefab;
+
+
   [Header("Screen shake")]
   private CinemachineImpulseSource screenShake;
   [SerializeField] private float shakeMultiplier;
   public Vector3 shakeSwordImpact;
   public Vector3 shakeHighDamage;
+
 
   [Header("After image fx")]
   [SerializeField] private GameObject afterImagePrefab;
@@ -19,20 +26,24 @@ public class EntityFX : MonoBehaviour
   [SerializeField] private float afterImageCooldown;
   private float afterImageCooldownTimer;
 
+
   [Header("FlashFX")]
   [SerializeField] private float flashDuration;
   [SerializeField] private Material hitMat;
   private Material originalMat;
+
 
   [Header("Ailment color")]
   [SerializeField] private Color[] chillColor;
   [SerializeField] private Color[] igniteColor;
   [SerializeField] private Color[] shockColor;
 
+
   [Header("Ailment particles")]
   [SerializeField] private ParticleSystem igniteFx;
   [SerializeField] private ParticleSystem chillFx;
   [SerializeField] private ParticleSystem shockFx;
+
 
   [Header("Hit fx")]
   [SerializeField] private GameObject hitFx;
@@ -52,6 +63,18 @@ public class EntityFX : MonoBehaviour
   private void Update()
   {
     afterImageCooldownTimer -= Time.deltaTime;
+  }
+
+  public void CreatePopUpText(string _text)
+  {
+    float randomX = Random.Range(-1, 1);
+    float randomY = Random.Range(1.5f, 5);
+
+    Vector3 positionOffset = new Vector3(randomX, randomY, 0);
+
+    GameObject newText = Instantiate(popUpTextPrefab, transform.position + positionOffset, Quaternion.identity);
+
+    newText.GetComponent<TextMeshPro>().text = _text;
   }
 
   public void ScreenShake(Vector3 _shakePower)

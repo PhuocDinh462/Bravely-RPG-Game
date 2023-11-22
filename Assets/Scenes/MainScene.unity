@@ -23599,6 +23599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cb935d493de1ca346b53d6dd54f806f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  popUpTextPrefab: {fileID: 4019894314123986450, guid: 2e6e57d713305b54cb3267ff2258441d, type: 3}
   shakeMultiplier: 0.15
   shakeSwordImpact: {x: 0.5, y: 0, z: 0}
   shakeHighDamage: {x: 2, y: 2, z: 0}
@@ -38625,6 +38626,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 6180585677156461179, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
+      propertyPath: popUpTextPrefab
+      value: 
+      objectReference: {fileID: 4019894314123986450, guid: 2e6e57d713305b54cb3267ff2258441d, type: 3}
     - target: {fileID: 7297117936991726839, guid: 79055664e6b3e8e49af63891d0cca2a1, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
