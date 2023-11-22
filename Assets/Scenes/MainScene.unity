@@ -34261,9 +34261,77 @@ PrefabInstance:
       propertyPath: inventorySlotParent
       value: 
       objectReference: {fileID: 566792040}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.size
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6016033a1f145274ea6d6c7bd747d83e, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[3]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1b29f26d110849644b66b042d39e3a81, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[4]
+      value: 
+      objectReference: {fileID: 11400000, guid: ef9e9489607478948b583ae19faf6e39, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[6]
+      value: 
+      objectReference: {fileID: 11400000, guid: 4cdd176566767224cb9bd1d6432a15e5, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[7]
+      value: 
+      objectReference: {fileID: 11400000, guid: b96b729a87daa384d8f8a1ee385549df, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[8]
+      value: 
+      objectReference: {fileID: 11400000, guid: 202387d17d9f79245beb1f4653babf89, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[10]
+      value: 
+      objectReference: {fileID: 11400000, guid: d0091bc188567274491d1f8c79ee53bb, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[11]
+      value: 
+      objectReference: {fileID: 11400000, guid: 11b89188ea9c4c84fbd3c96edc317b06, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[12]
+      value: 
+      objectReference: {fileID: 11400000, guid: 827c4e6d5d954ce459409a7a1b96e465, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[14]
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c768203bdc522c4fb6574d37b3024bd, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[15]
+      value: 
+      objectReference: {fileID: 11400000, guid: 8a697801d6b426441b478704970b5c33, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[16]
+      value: 
+      objectReference: {fileID: 11400000, guid: ebdfe2d714c42244fa8214fba278d633, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[17]
+      value: 
+      objectReference: {fileID: 11400000, guid: f53fc58c7dca9de4bbe6e78aa4fb1be3, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[18]
+      value: 
+      objectReference: {fileID: 11400000, guid: 23d0649c0d50ced40a4055ef0fe25613, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[20]
+      value: 
+      objectReference: {fileID: 11400000, guid: 228e1760f345a01488d402143bf426dc, type: 2}
+    - target: {fileID: 5436295706190919103, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
+      propertyPath: itemDataBase.Array.data[21]
+      value: 
+      objectReference: {fileID: 11400000, guid: bad279caedb46fd40860e4354cf5230e, type: 2}
     - target: {fileID: 6999318347384648905, guid: 06453ce1aa1f9ac47bf59acc0f6bbdbf, type: 3}
       propertyPath: m_Name
-      value: Inventory
+      value: InventoryManager
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
