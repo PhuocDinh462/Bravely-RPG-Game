@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class Blackhole_Skill_Controller : MonoBehaviour
-{
+public class Blackhole_Skill_Controller : MonoBehaviour {
   [SerializeField] private GameObject hotKeyPrefab;
   [SerializeField] private List<KeyCode> keyCodeList;
 
@@ -27,8 +26,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
 
   public bool playerCanExitState { get; private set; }
 
-  public void SetupBlackhole(float _maxSize, float _growSpeed, float _shrinkSpeed, int _amountOfAttacks, float _cloneAttackCooldown, float _blackholeDuration)
-  {
+  public void SetupBlackhole(float _maxSize, float _growSpeed, float _shrinkSpeed, int _amountOfAttacks, float _cloneAttackCooldown, float _blackholeDuration) {
     maxSize = _maxSize;
     growSpeed = _growSpeed;
     shrinkSpeed = _shrinkSpeed;
@@ -41,13 +39,11 @@ public class Blackhole_Skill_Controller : MonoBehaviour
       playerCanDisappear = false;
   }
 
-  private void Update()
-  {
+  private void Update() {
     cloneAttackTimer -= Time.deltaTime;
     blackholeTimer -= Time.deltaTime;
 
-    if (blackholeTimer < 0)
-    {
+    if (blackholeTimer < 0) {
       blackholeTimer = Mathf.Infinity;
 
       if (targets.Count > 0)
@@ -56,8 +52,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
         FinishBlackHoleAbility();
     }
 
-    if (Input.GetKeyDown(KeyCode.R))
-    {
+    if (Input.GetKeyDown(KeyCode.R)) {
       ReleaseCloneAttack();
     }
 
@@ -66,8 +61,7 @@ public class Blackhole_Skill_Controller : MonoBehaviour
     if (canGrow && !canShrink)
       transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(maxSize, maxSize), growSpeed * Time.deltaTime);
 
-    if (canShrink)
-    {
+    if (canShrink) {
       transform.localScale = Vector2.Lerp(transform.localScale, new Vector2(-1, -1), shrinkSpeed * Time.deltaTime);
 
       if (transform.localScale.x < 0)
@@ -75,25 +69,21 @@ public class Blackhole_Skill_Controller : MonoBehaviour
     }
   }
 
-  private void ReleaseCloneAttack()
-  {
+  private void ReleaseCloneAttack() {
     if (targets.Count <= 0) return;
 
     DestroyHotKey();
     cloneAttackReleased = true;
     canCreateHotKey = false;
 
-    if (playerCanDisappear)
-    {
+    if (playerCanDisappear) {
       playerCanDisappear = false;
       PlayerManager.instance.player.fx.MakeTransparent(true);
     }
   }
 
-  private void CloneAttackLogic()
-  {
-    if (cloneAttackTimer < 0 && cloneAttackReleased && amountOfAttacks > 0)
-    {
+  private void CloneAttackLogic() {
+    if (cloneAttackTimer < 0 && cloneAttackReleased && amountOfAttacks > 0) {
       cloneAttackTimer = cloneAttackCooldown;
 
       int randomIndex = UnityEngine.Random.Range(0, targets.Count);
@@ -105,63 +95,51 @@ public class Blackhole_Skill_Controller : MonoBehaviour
       else
         xOffset = -2;
 
-      if (SkillManager.instance.clone.crystalInsteadOfClone)
-      {
+      if (SkillManager.instance.clone.crystalInsteadOfClone) {
         SkillManager.instance.crystal.CreateCrystal();
         SkillManager.instance.crystal.CurrentCrystalChooseRandomTarget();
-      }
-      else
-      {
+      } else {
         SkillManager.instance.clone.CreateClone(targets[randomIndex], new Vector3(xOffset, 0));
       }
       amountOfAttacks--;
 
-      if (amountOfAttacks <= 0)
-      {
+      if (amountOfAttacks <= 0) {
         Invoke("FinishBlackHoleAbility", 1f);
       }
     }
   }
 
-  private void FinishBlackHoleAbility()
-  {
+  private void FinishBlackHoleAbility() {
     DestroyHotKey();
     playerCanExitState = true;
     canShrink = true;
     cloneAttackReleased = false;
   }
 
-  private void DestroyHotKey()
-  {
+  private void DestroyHotKey() {
     if (createdHotKey.Count <= 0)
       return;
 
-    for (int i = 0; i < createdHotKey.Count; i++)
-    {
+    for (int i = 0; i < createdHotKey.Count; i++) {
       Destroy(createdHotKey[i]);
     }
   }
 
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
-    if (collision.GetComponent<Enemy>())
-    {
+  private void OnTriggerEnter2D(Collider2D collision) {
+    if (collision.GetComponent<Enemy>()) {
       collision.GetComponent<Enemy>().FreezeTime(true);
 
       CreateHotKey(collision);
     }
   }
 
-  private void OnTriggerExit2D(Collider2D collision)
-  {
+  private void OnTriggerExit2D(Collider2D collision) {
     if (collision.GetComponent<Enemy>())
       collision.GetComponent<Enemy>().FreezeTime(false);
   }
 
-  private void CreateHotKey(Collider2D collision)
-  {
-    if (keyCodeList.Count <= 0)
-    {
+  private void CreateHotKey(Collider2D collision) {
+    if (keyCodeList.Count <= 0) {
       Debug.LogWarning("Not enough hot key in a key code list!");
       return;
     }
@@ -171,12 +149,12 @@ public class Blackhole_Skill_Controller : MonoBehaviour
     GameObject newHotKey = Instantiate(hotKeyPrefab, collision.transform.position + new Vector3(0, 2), quaternion.identity);
     createdHotKey.Add(newHotKey);
 
-    KeyCode choosenKey = keyCodeList[UnityEngine.Random.Range(0, keyCodeList.Count)];
-    keyCodeList.Remove(choosenKey);
+    KeyCode chosenKey = keyCodeList[UnityEngine.Random.Range(0, keyCodeList.Count)];
+    keyCodeList.Remove(chosenKey);
 
     Blackhole_Hotkey_Controller newHotKeyScript = newHotKey.GetComponent<Blackhole_Hotkey_Controller>();
 
-    newHotKeyScript.SetupHotKey(choosenKey, collision.transform, this);
+    newHotKeyScript.SetupHotKey(chosenKey, collision.transform, this);
   }
 
   public void AddEnemyToList(Transform _enemyTransform) => targets.Add(_enemyTransform);

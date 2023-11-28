@@ -2,8 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_InGame : MonoBehaviour
-{
+public class UI_InGame : MonoBehaviour {
   [SerializeField] private PlayerStats playerStats;
   [SerializeField] private Slider slider;
 
@@ -21,16 +20,14 @@ public class UI_InGame : MonoBehaviour
   [SerializeField] private float soulsAmount;
   [SerializeField] private float increaseRate = 100;
 
-  void Start()
-  {
+  void Start() {
     if (playerStats != null)
       playerStats.onHealthChanged += UpdateHealthUI;
 
     skills = SkillManager.instance;
   }
 
-  void Update()
-  {
+  void Update() {
     UpdateSoulsUI();
 
     if (Input.GetKeyDown(KeyCode.LeftShift) && skills.dash.dashUnlocked)
@@ -60,8 +57,7 @@ public class UI_InGame : MonoBehaviour
     CheckCooldownOf(flaskImage, Inventory.instance.flaskCooldown);
   }
 
-  private void UpdateSoulsUI()
-  {
+  private void UpdateSoulsUI() {
     if (soulsAmount < PlayerManager.instance.GetCurrency())
       soulsAmount += Time.deltaTime * increaseRate;
     else
@@ -70,20 +66,17 @@ public class UI_InGame : MonoBehaviour
     currentSouls.text = ((int)soulsAmount).ToString();
   }
 
-  private void UpdateHealthUI()
-  {
+  private void UpdateHealthUI() {
     slider.maxValue = playerStats.GetMaxHealthValue();
     slider.value = playerStats.currentHealth;
   }
 
-  private void SetCooldownOf(Image _image)
-  {
+  private void SetCooldownOf(Image _image) {
     if (_image.fillAmount <= 0)
       _image.fillAmount = 1;
   }
 
-  private void CheckCooldownOf(Image _image, float _cooldown)
-  {
+  private void CheckCooldownOf(Image _image, float _cooldown) {
     if (_image.fillAmount > 0)
       _image.fillAmount -= 1 / _cooldown * Time.deltaTime;
   }

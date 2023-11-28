@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Crystal_Skill : Skill
-{
+public class Crystal_Skill : Skill {
   [SerializeField] private float crystalDuration;
   [SerializeField] private GameObject crystalPrefab;
   private GameObject currentCrystal;
@@ -33,8 +32,7 @@ public class Crystal_Skill : Skill
   [SerializeField] private float useTimeWindow;
   [SerializeField] private List<GameObject> crystalLeft = new List<GameObject>();
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
 
     unlockCrystalButton.GetComponent<Button>().onClick.AddListener(UnlockCrystal);
@@ -46,8 +44,7 @@ public class Crystal_Skill : Skill
 
   // Here we unlock crystal skills
   #region Unlock skill region
-  protected override void CheckUnlock()
-  {
+  protected override void CheckUnlock() {
     UnlockCrystal();
     UnlockCrystalMirage();
     UnlockExplosiveCrystal();
@@ -55,68 +52,56 @@ public class Crystal_Skill : Skill
     UnlockMultiStack();
   }
 
-  private void UnlockCrystal()
-  {
+  private void UnlockCrystal() {
     if (unlockCrystalButton.unlocked)
       crystalUnlocked = true;
   }
 
-  private void UnlockCrystalMirage()
-  {
+  private void UnlockCrystalMirage() {
     if (unlockCloneInsteadButton.unlocked)
       cloneInsteadOfCrystal = true;
   }
 
-  private void UnlockExplosiveCrystal()
-  {
+  private void UnlockExplosiveCrystal() {
     if (unlockExplosiveButton.unlocked)
       canExplode = true;
   }
 
-  private void UnlockMovingCrystal()
-  {
+  private void UnlockMovingCrystal() {
     if (unlockMovingCrystalButton.unlocked)
       canMoveToEnemy = true;
   }
 
-  private void UnlockMultiStack()
-  {
+  private void UnlockMultiStack() {
     if (unlockMultiStackButton.unlocked)
       canUseMultiStacks = true;
   }
 
   #endregion
 
-  public override void UseSkill()
-  {
+  public override void UseSkill() {
     base.UseSkill();
 
     if (CanUseMultiCrystal()) return;
 
-    if (!currentCrystal)
-    {
+    if (!currentCrystal) {
       CreateCrystal();
-    }
-    else
-    {
+    } else {
       if (canMoveToEnemy) return;
 
       Vector2 playerPos = player.transform.position;
       player.transform.position = currentCrystal.transform.position;
       currentCrystal.transform.position = playerPos;
 
-      if (cloneInsteadOfCrystal)
-      {
+      if (cloneInsteadOfCrystal) {
         SkillManager.instance.clone.CreateClone(currentCrystal.transform, Vector3.zero);
         Destroy(currentCrystal);
-      }
-      else
+      } else
         currentCrystal.GetComponent<Crystal_Skill_Controller>()?.FinishCrystal();
     }
   }
 
-  public void CreateCrystal()
-  {
+  public void CreateCrystal() {
     currentCrystal = Instantiate(crystalPrefab, player.transform.position, Quaternion.identity);
     Crystal_Skill_Controller currentCrystalScript = currentCrystal.GetComponent<Crystal_Skill_Controller>();
 
@@ -125,12 +110,9 @@ public class Crystal_Skill : Skill
 
   public void CurrentCrystalChooseRandomTarget() => currentCrystal.GetComponent<Crystal_Skill_Controller>().ChooseRandomEnemy();
 
-  private bool CanUseMultiCrystal()
-  {
-    if (canUseMultiStacks)
-    {
-      if (crystalLeft.Count > 0)
-      {
+  private bool CanUseMultiCrystal() {
+    if (canUseMultiStacks) {
+      if (crystalLeft.Count > 0) {
         if (crystalLeft.Count == amountOfStacks)
           Invoke("ResetAbility", useTimeWindow);
 
@@ -143,8 +125,7 @@ public class Crystal_Skill : Skill
         newCrystal.GetComponent<Crystal_Skill_Controller>().
         SetupCrystal(crystalDuration, canExplode, canMoveToEnemy, moveSpeed, FindClosestEnemy(newCrystal.transform), player);
 
-        if (crystalLeft.Count <= 0)
-        {
+        if (crystalLeft.Count <= 0) {
           cooldown = multiStackCooldown;
           RefillCrystal();
         }
@@ -155,18 +136,15 @@ public class Crystal_Skill : Skill
     return false;
   }
 
-  private void RefillCrystal()
-  {
+  private void RefillCrystal() {
     int amountToAdd = amountOfStacks - crystalLeft.Count;
 
-    for (int i = 0; i < amountToAdd; i++)
-    {
+    for (int i = 0; i < amountToAdd; i++) {
       crystalLeft.Add(crystalPrefab);
     }
   }
 
-  private void ResetAbility()
-  {
+  private void ResetAbility() {
     if (cooldownTimer > 0) return;
 
     cooldownTimer = multiStackCooldown;

@@ -1,16 +1,13 @@
 using UnityEngine;
 
-public class SkeletonDeadState : EnemyState
-{
+public class SkeletonDeadState : EnemyState {
   private Enemy_Skeleton enemy;
 
-  public SkeletonDeadState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBooleanName, Enemy_Skeleton _enemy) : base(_enemy, _stateMachine, _animBooleanName)
-  {
+  public SkeletonDeadState(Enemy _enemyBase, EnemyStateMachine _stateMachine, string _animBooleanName, Enemy_Skeleton _enemy) : base(_enemy, _stateMachine, _animBooleanName) {
     this.enemy = _enemy;
   }
 
-  public override void Enter()
-  {
+  public override void Enter() {
     base.Enter();
 
     enemy.anim.SetBool(enemy.lastAnimBoolName, true);
@@ -20,8 +17,7 @@ public class SkeletonDeadState : EnemyState
     stateTimer = .15f;
   }
 
-  public override void Update()
-  {
+  public override void Update() {
     base.Update();
 
     if (stateTimer > 0)

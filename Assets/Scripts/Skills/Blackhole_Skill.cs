@@ -1,8 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Blackhole_Skill : Skill
-{
+public class Blackhole_Skill : Skill {
   [SerializeField] private UI_SkillTreeSlot blackHoleUnlockButton;
   public bool blackholeUnlocked { get; private set; }
   [SerializeField] private int amountOfAttacks;
@@ -17,19 +16,16 @@ public class Blackhole_Skill : Skill
   Blackhole_Skill_Controller currentBlackhole;
 
 
-  private void UnlockBlackhole()
-  {
+  private void UnlockBlackhole() {
     if (blackHoleUnlockButton.unlocked)
       blackholeUnlocked = true;
   }
 
-  public override bool CanUseSkill()
-  {
+  public override bool CanUseSkill() {
     return base.CanUseSkill();
   }
 
-  public override void UseSkill()
-  {
+  public override void UseSkill() {
     base.UseSkill();
 
     GameObject newBlackHole = Instantiate(blackholePrefab, player.transform.position, Quaternion.identity);
@@ -42,24 +38,20 @@ public class Blackhole_Skill : Skill
     AudioManager.instance.PlaySFX(6, player.transform);
   }
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
 
     blackHoleUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockBlackhole);
   }
 
-  protected override void Update()
-  {
+  protected override void Update() {
     base.Update();
   }
 
-  public bool SkillCompleted()
-  {
+  public bool SkillCompleted() {
     if (!currentBlackhole) return false;
 
-    if (currentBlackhole.playerCanExitState)
-    {
+    if (currentBlackhole.playerCanExitState) {
       currentBlackhole = null;
       return true;
     }
@@ -67,13 +59,11 @@ public class Blackhole_Skill : Skill
     return false;
   }
 
-  public float GetBlackholeRadius()
-  {
+  public float GetBlackholeRadius() {
     return maxSize / 2;
   }
 
-  protected override void CheckUnlock()
-  {
+  protected override void CheckUnlock() {
     base.CheckUnlock();
 
     UnlockBlackhole();

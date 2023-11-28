@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class SkillManager : MonoBehaviour
-{
+public class SkillManager : MonoBehaviour {
   public static SkillManager instance;
 
   public Dash_Skill dash { get; private set; }
@@ -12,16 +11,14 @@ public class SkillManager : MonoBehaviour
   public Parry_Skill parry { get; private set; }
   public Dodge_Skill dodge { get; private set; }
 
-  private void Awake()
-  {
+  private void Awake() {
     if (instance)
       Destroy(instance.gameObject);
     else
       instance = this;
   }
 
-  private void Start()
-  {
+  private void Start() {
     dash = GetComponent<Dash_Skill>();
     clone = GetComponent<Clone_Skill>();
     sword = GetComponent<Sword_Skill>();

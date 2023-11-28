@@ -1,8 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum EquipmentType
-{
+public enum EquipmentType {
   Weapon,
   Armor,
   Amulet,
@@ -11,8 +10,7 @@ public enum EquipmentType
 
 [CreateAssetMenu(fileName = "New Item Data", menuName = "Data/Equipment")]
 
-public class ItemData_Equipment : ItemData
-{
+public class ItemData_Equipment : ItemData {
   public EquipmentType equipmentType;
 
   [Header("Unique effect")]
@@ -47,16 +45,13 @@ public class ItemData_Equipment : ItemData
 
   private int descriptionLength;
 
-  public void Effect(Transform _enemyPosition)
-  {
-    foreach (var item in itemEffects)
-    {
+  public void Effect(Transform _enemyPosition) {
+    foreach (var item in itemEffects) {
       item.ExecuteEffect(_enemyPosition);
     }
   }
 
-  public void AddModifiers()
-  {
+  public void AddModifiers() {
     PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
     playerStats.strength.AddModifier(strength);
@@ -78,8 +73,7 @@ public class ItemData_Equipment : ItemData
     playerStats.lightningDamage.AddModifier(lightningDamage);
   }
 
-  public void RemoveModifiers()
-  {
+  public void RemoveModifiers() {
     PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
     playerStats.strength.RemoveModifier(strength);
@@ -101,8 +95,7 @@ public class ItemData_Equipment : ItemData
     playerStats.lightningDamage.RemoveModifier(lightningDamage);
   }
 
-  public override string GetDescription()
-  {
+  public override string GetDescription() {
     sb.Length = 0;
     descriptionLength = 0;
 
@@ -125,20 +118,16 @@ public class ItemData_Equipment : ItemData
     AddItemDescription(lightningDamage, "Lightning Damage");
 
 
-    for (int i = 0; i < itemEffects.Length; i++)
-    {
-      if (itemEffects[i].effectDescription.Length > 0)
-      {
+    for (int i = 0; i < itemEffects.Length; i++) {
+      if (itemEffects[i].effectDescription.Length > 0) {
         sb.AppendLine();
         sb.Append("Unique: " + itemEffects[i].effectDescription);
         descriptionLength++;
       }
     }
 
-    if (descriptionLength < 5)
-    {
-      for (int i = 0; i < 5 - descriptionLength; i++)
-      {
+    if (descriptionLength < 5) {
+      for (int i = 0; i < 5 - descriptionLength; i++) {
         sb.AppendLine();
         sb.Append("");
       }
@@ -147,10 +136,8 @@ public class ItemData_Equipment : ItemData
     return sb.ToString();
   }
 
-  private void AddItemDescription(int _value, string _name)
-  {
-    if (_value != 0)
-    {
+  private void AddItemDescription(int _value, string _name) {
+    if (_value != 0) {
       if (sb.Length > 0)
         sb.AppendLine();
 

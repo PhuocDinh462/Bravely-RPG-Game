@@ -2,8 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-public class SaveManager : MonoBehaviour
-{
+public class SaveManager : MonoBehaviour {
   public static SaveManager instance;
 
   [SerializeField] private string fileName;
@@ -13,39 +12,33 @@ public class SaveManager : MonoBehaviour
   private FileDataHandler dataHandler;
 
   [ContextMenu("Delete save file")]
-  public void DeleteSavedData()
-  {
+  public void DeleteSavedData() {
     dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
     dataHandler.Delete();
   }
 
-  private void Awake()
-  {
+  private void Awake() {
     if (instance)
       Destroy(instance.gameObject);
     else
       instance = this;
   }
 
-  private void Start()
-  {
+  private void Start() {
     dataHandler = new FileDataHandler(Application.persistentDataPath, fileName, encryptData);
     saveManagers = FindAllSaveManagers();
 
     LoadGame();
   }
 
-  public void NewGame()
-  {
+  public void NewGame() {
     gameData = new GameData();
   }
 
-  public void LoadGame()
-  {
+  public void LoadGame() {
     gameData = dataHandler.Load();
 
-    if (this.gameData == null)
-    {
+    if (this.gameData == null) {
       Debug.Log("No save data found");
       NewGame();
     }
@@ -54,28 +47,24 @@ public class SaveManager : MonoBehaviour
       saveManager.LoadData(gameData);
   }
 
-  public void SaveGame()
-  {
+  public void SaveGame() {
     foreach (ISaveManager saveManager in saveManagers)
       saveManager.SaveData(ref gameData);
 
     dataHandler.Save(gameData);
   }
 
-  private void OnApplicationQuit()
-  {
+  private void OnApplicationQuit() {
     SaveGame();
   }
 
-  private List<ISaveManager> FindAllSaveManagers()
-  {
+  private List<ISaveManager> FindAllSaveManagers() {
     IEnumerable<ISaveManager> saveManagers = FindObjectsOfType<MonoBehaviour>().OfType<ISaveManager>();
 
     return new List<ISaveManager>(saveManagers);
   }
 
-  public bool HasSavedData()
-  {
+  public bool HasSavedData() {
     if (dataHandler.Load() != null) return true;
     return false;
   }

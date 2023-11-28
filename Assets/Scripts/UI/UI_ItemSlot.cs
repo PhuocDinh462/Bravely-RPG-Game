@@ -3,27 +3,23 @@ using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler
-{
+public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHandler, IPointerExitHandler {
   [SerializeField] protected Image itemImage;
   [SerializeField] protected TextMeshProUGUI itemText;
 
   protected UI ui;
   public InventoryItem item;
 
-  protected virtual void Start()
-  {
+  protected virtual void Start() {
     ui = GetComponentInParent<UI>();
   }
 
-  public void UpdateSlot(InventoryItem _newItem)
-  {
+  public void UpdateSlot(InventoryItem _newItem) {
     item = _newItem;
 
     itemImage.color = Color.white;
 
-    if (item != null)
-    {
+    if (item != null) {
       itemImage.sprite = item.data.icon;
 
       if (item.stackSize > 1)
@@ -33,8 +29,7 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     }
   }
 
-  public void CleanUpSlot()
-  {
+  public void CleanUpSlot() {
     item = null;
 
     itemImage.sprite = null;
@@ -43,12 +38,10 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     itemText.text = "";
   }
 
-  public virtual void OnPointerDown(PointerEventData eventData)
-  {
+  public virtual void OnPointerDown(PointerEventData eventData) {
     if (item == null) return;
 
-    if (Input.GetKey(KeyCode.LeftControl))
-    {
+    if (Input.GetKey(KeyCode.LeftControl)) {
       Inventory.instance.RemoveItem(item.data);
       return;
     }
@@ -59,15 +52,13 @@ public class UI_ItemSlot : MonoBehaviour, IPointerDownHandler, IPointerEnterHand
     ui.itemTooltip.HideToolTip();
   }
 
-  public void OnPointerEnter(PointerEventData eventData)
-  {
+  public void OnPointerEnter(PointerEventData eventData) {
     if (item == null) return;
 
     ui.itemTooltip.ShowToolTip(item.data as ItemData_Equipment);
   }
 
-  public void OnPointerExit(PointerEventData eventData)
-  {
+  public void OnPointerExit(PointerEventData eventData) {
     if (item == null) return;
 
     ui.itemTooltip.HideToolTip();

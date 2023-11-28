@@ -1,29 +1,22 @@
 using UnityEngine;
 
-public class PlayerGroundedState : PlayerState
-{
-  public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
-  {
+public class PlayerGroundedState : PlayerState {
+  public PlayerGroundedState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName) {
   }
 
-  public override void Enter()
-  {
+  public override void Enter() {
     base.Enter();
   }
 
-  public override void Exit()
-  {
+  public override void Exit() {
     base.Exit();
   }
 
-  public override void Update()
-  {
+  public override void Update() {
     base.Update();
 
-    if (Input.GetKeyDown(KeyCode.R) && player.skill.blackhole.blackholeUnlocked)
-    {
-      if (player.skill.blackhole.cooldownTimer > 0)
-      {
+    if (Input.GetKeyDown(KeyCode.R) && player.skill.blackhole.blackholeUnlocked) {
+      if (player.skill.blackhole.cooldownTimer > 0) {
         player.fx.CreatePopUpText("Cooldown");
         return;
       }
@@ -47,8 +40,7 @@ public class PlayerGroundedState : PlayerState
       stateMachine.ChangeState(player.jumpState);
   }
 
-  private bool HasNoSword()
-  {
+  private bool HasNoSword() {
     if (!player.sword)
       return true;
 

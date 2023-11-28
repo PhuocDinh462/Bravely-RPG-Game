@@ -1,8 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class Blackhole_Hotkey_Controller : MonoBehaviour
-{
+public class Blackhole_Hotkey_Controller : MonoBehaviour {
   private SpriteRenderer sr;
   private KeyCode myHotKey;
   private TextMeshProUGUI myText;
@@ -10,8 +9,7 @@ public class Blackhole_Hotkey_Controller : MonoBehaviour
   private Transform myEnemy;
   private Blackhole_Skill_Controller blackHole;
 
-  public void SetupHotKey(KeyCode _myNewHotKey, Transform _myEnemy, Blackhole_Skill_Controller _myBlackHole)
-  {
+  public void SetupHotKey(KeyCode _myNewHotKey, Transform _myEnemy, Blackhole_Skill_Controller _myBlackHole) {
     sr = GetComponent<SpriteRenderer>();
     myText = GetComponentInChildren<TextMeshProUGUI>();
 
@@ -22,10 +20,8 @@ public class Blackhole_Hotkey_Controller : MonoBehaviour
     myHotKey = _myNewHotKey;
   }
 
-  private void Update()
-  {
-    if (Input.GetKeyDown(myHotKey))
-    {
+  private void Update() {
+    if (Input.GetKeyDown(myHotKey)) {
       blackHole.AddEnemyToList(myEnemy);
 
       myText.color = Color.clear;

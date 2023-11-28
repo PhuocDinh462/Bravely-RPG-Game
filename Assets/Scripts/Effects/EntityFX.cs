@@ -2,8 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 
-public class EntityFX : MonoBehaviour
-{
+public class EntityFX : MonoBehaviour {
   protected Player player;
   protected SpriteRenderer sr;
 
@@ -35,16 +34,14 @@ public class EntityFX : MonoBehaviour
   [SerializeField] private GameObject criticalHitFx;
 
 
-  protected virtual void Start()
-  {
+  protected virtual void Start() {
     sr = GetComponentInChildren<SpriteRenderer>();
     player = PlayerManager.instance.player;
 
     originalMat = sr.material;
   }
 
-  public void CreatePopUpText(string _text)
-  {
+  public void CreatePopUpText(string _text) {
     float randomX = Random.Range(-1, 1);
     float randomY = Random.Range(1.5f, 5);
 
@@ -55,16 +52,14 @@ public class EntityFX : MonoBehaviour
     newText.GetComponent<TextMeshPro>().text = _text;
   }
 
-  public void MakeTransparent(bool _transparent)
-  {
+  public void MakeTransparent(bool _transparent) {
     if (_transparent)
       sr.color = Color.clear;
     else
       sr.color = Color.white;
   }
 
-  private IEnumerator FlashFX()
-  {
+  private IEnumerator FlashFX() {
     sr.material = hitMat;
     Color currentColor = sr.color;
 
@@ -75,16 +70,14 @@ public class EntityFX : MonoBehaviour
     sr.material = originalMat;
   }
 
-  private void RedColorBlink()
-  {
+  private void RedColorBlink() {
     if (sr.color != Color.white)
       sr.color = Color.white;
     else
       sr.color = Color.red;
   }
 
-  private void CancelColorChange()
-  {
+  private void CancelColorChange() {
     CancelInvoke();
     sr.color = Color.white;
 
@@ -92,16 +85,14 @@ public class EntityFX : MonoBehaviour
     chillFx.Stop();
     shockFx.Stop();
   }
-  public void IgniteFxFor(float _seconds)
-  {
+  public void IgniteFxFor(float _seconds) {
     igniteFx.Play();
 
     InvokeRepeating("IgniteColorFx", 0, .3f);
     Invoke("CancelColorChange", _seconds);
   }
 
-  public void ChillFxFor(float _seconds)
-  {
+  public void ChillFxFor(float _seconds) {
     chillFx.Play();
 
     InvokeRepeating("ChillColorFx", 0, .3f);
@@ -109,40 +100,35 @@ public class EntityFX : MonoBehaviour
   }
 
 
-  public void ShockFxFor(float _seconds)
-  {
+  public void ShockFxFor(float _seconds) {
     shockFx.Play();
 
     InvokeRepeating("ShockColorFx", 0, .3f);
     Invoke("CancelColorChange", _seconds);
   }
 
-  private void IgniteColorFx()
-  {
+  private void IgniteColorFx() {
     if (sr.color != igniteColor[0])
       sr.color = igniteColor[0];
     else
       sr.color = igniteColor[1];
   }
 
-  private void ChillColorFx()
-  {
+  private void ChillColorFx() {
     if (sr.color != chillColor[0])
       sr.color = chillColor[0];
     else
       sr.color = chillColor[1];
   }
 
-  private void ShockColorFx()
-  {
+  private void ShockColorFx() {
     if (sr.color != shockColor[0])
       sr.color = shockColor[0];
     else
       sr.color = shockColor[1];
   }
 
-  public void CreateHitFx(Transform _target, bool _critical)
-  {
+  public void CreateHitFx(Transform _target, bool _critical) {
 
     float zRotation = Random.Range(-90, 90);
     float xPosition = Random.Range(-.5f, .5f);
@@ -152,8 +138,7 @@ public class EntityFX : MonoBehaviour
 
     GameObject hitPrefab = hitFx;
 
-    if (_critical)
-    {
+    if (_critical) {
       hitPrefab = criticalHitFx;
 
       float yRotation = 0;

@@ -2,8 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class UI : MonoBehaviour, ISaveManager
-{
+public class UI : MonoBehaviour, ISaveManager {
   [Header("End screen")]
   [SerializeField] private UI_FadeScreen fadeScreen;
   [SerializeField] private GameObject endText;
@@ -23,14 +22,12 @@ public class UI : MonoBehaviour, ISaveManager
 
   [SerializeField] private UI_VolumeSlider[] volumeSettings;
 
-  private void Awake()
-  {
+  private void Awake() {
     SwitchTo(skillTreeUI); // We need this to assign event on skill tree before we assign events on skill scripts
     fadeScreen.gameObject.SetActive(true);
   }
 
-  void Start()
-  {
+  void Start() {
     SwitchTo(inGameUI);
 
     itemTooltip.gameObject.SetActive(false);
@@ -38,8 +35,7 @@ public class UI : MonoBehaviour, ISaveManager
   }
 
   // Update is called once per frame
-  void Update()
-  {
+  void Update() {
     if (Input.GetKeyDown(KeyCode.C))
       SwitchWithKeyTo(characterUI);
 
@@ -53,25 +49,21 @@ public class UI : MonoBehaviour, ISaveManager
       SwitchWithKeyTo(optionUI);
   }
 
-  public void SwitchTo(GameObject _menu)
-  {
+  public void SwitchTo(GameObject _menu) {
 
-    for (int i = 0; i < transform.childCount; i++)
-    {
+    for (int i = 0; i < transform.childCount; i++) {
       bool fadeScreen = transform.GetChild(i).GetComponent<UI_FadeScreen>() != null; // We need this to keep fade screen game object active
 
       if (!fadeScreen)
         transform.GetChild(i).gameObject.SetActive(false);
     }
 
-    if (_menu)
-    {
+    if (_menu) {
       AudioManager.instance.PlaySFX(7);
       _menu.SetActive(true);
     }
 
-    if (GameManager.instance != null)
-    {
+    if (GameManager.instance != null) {
       if (_menu == inGameUI)
         GameManager.instance.PauseGame(false);
       else
@@ -79,10 +71,8 @@ public class UI : MonoBehaviour, ISaveManager
     }
   }
 
-  public void SwitchWithKeyTo(GameObject _menu)
-  {
-    if (_menu && _menu.activeSelf)
-    {
+  public void SwitchWithKeyTo(GameObject _menu) {
+    if (_menu && _menu.activeSelf) {
       _menu.SetActive(false);
       CheckForInGameUI();
       return;
@@ -91,8 +81,7 @@ public class UI : MonoBehaviour, ISaveManager
     SwitchTo(_menu);
   }
 
-  private void CheckForInGameUI()
-  {
+  private void CheckForInGameUI() {
     for (int i = 0; i < transform.childCount; i++)
       if (transform.GetChild(i).gameObject.activeSelf && transform.GetChild(i).GetComponent<UI_FadeScreen>() == null)
         return;
@@ -100,14 +89,12 @@ public class UI : MonoBehaviour, ISaveManager
     SwitchTo(inGameUI);
   }
 
-  public void SwitchOnEndScreen()
-  {
+  public void SwitchOnEndScreen() {
     fadeScreen.FadeOut();
     StartCoroutine(EndScreenCoroutine());
   }
 
-  IEnumerator EndScreenCoroutine()
-  {
+  IEnumerator EndScreenCoroutine() {
     yield return new WaitForSeconds(1);
     endText.SetActive(true);
     yield return new WaitForSeconds(1.5f);
@@ -116,20 +103,16 @@ public class UI : MonoBehaviour, ISaveManager
 
   public void RestartGameButton() => GameManager.instance.RestartScene();
 
-  public void LoadData(GameData _data)
-  {
-    foreach (KeyValuePair<string, float> pair in _data.volumeSettings)
-    {
-      foreach (UI_VolumeSlider item in volumeSettings)
-      {
+  public void LoadData(GameData _data) {
+    foreach (KeyValuePair<string, float> pair in _data.volumeSettings) {
+      foreach (UI_VolumeSlider item in volumeSettings) {
         if (item.parametr == pair.Key)
           item.LoadSlider(pair.Value);
       }
     }
   }
 
-  public void SaveData(ref GameData _data)
-  {
+  public void SaveData(ref GameData _data) {
     _data.volumeSettings.Clear();
 
     foreach (UI_VolumeSlider item in volumeSettings)

@@ -2,8 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_CraftWindow : MonoBehaviour
-{
+public class UI_CraftWindow : MonoBehaviour {
   [SerializeField] private TextMeshProUGUI itemName;
   [SerializeField] private TextMeshProUGUI itemDescription;
   [SerializeField] private Image itemIcon;
@@ -11,18 +10,15 @@ public class UI_CraftWindow : MonoBehaviour
 
   [SerializeField] private Image[] materialImage;
 
-  public void SetupCraftWindow(ItemData_Equipment _data)
-  {
+  public void SetupCraftWindow(ItemData_Equipment _data) {
     craftButton.onClick.RemoveAllListeners();
 
-    for (int i = 0; i < materialImage.Length; i++)
-    {
+    for (int i = 0; i < materialImage.Length; i++) {
       materialImage[i].color = Color.clear;
       materialImage[i].GetComponentInChildren<TextMeshProUGUI>().color = Color.clear;
     }
 
-    for (int i = 0; i < _data.craftingMaterials.Count; i++)
-    {
+    for (int i = 0; i < _data.craftingMaterials.Count; i++) {
       if (_data.craftingMaterials.Count > materialImage.Length)
         Debug.LogWarning("You have more materials than you have material slots in craft window");
 

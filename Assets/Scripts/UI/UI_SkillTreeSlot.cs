@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISaveManager
-{
+public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, ISaveManager {
   private UI ui;
   private Image skillImage;
 
@@ -18,18 +17,15 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
   [SerializeField] private UI_SkillTreeSlot[] shouldBeUnlocked;
   [SerializeField] private UI_SkillTreeSlot[] shouldBeLocked;
 
-  private void OnValidate()
-  {
+  private void OnValidate() {
     gameObject.name = "SkillTreeSlot_UI - " + skillName;
   }
 
-  private void Awake()
-  {
+  private void Awake() {
     GetComponent<Button>().onClick.AddListener(() => UnlockSkillSlot());
   }
 
-  private void Start()
-  {
+  private void Start() {
     skillImage = GetComponent<Image>();
     ui = GetComponentInParent<UI>();
 
@@ -39,23 +35,18 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
       skillImage.color = Color.white;
   }
 
-  public void UnlockSkillSlot()
-  {
+  public void UnlockSkillSlot() {
     if (PlayerManager.instance.HaveEnoughMoney(skillCost) == false) return;
 
-    for (int i = 0; i < shouldBeUnlocked.Length; i++)
-    {
-      if (shouldBeUnlocked[i].unlocked == false)
-      {
+    for (int i = 0; i < shouldBeUnlocked.Length; i++) {
+      if (shouldBeUnlocked[i].unlocked == false) {
         Debug.Log("Cannot unlock skill");
         return;
       }
     }
 
-    for (int i = 0; i < shouldBeLocked.Length; i++)
-    {
-      if (shouldBeLocked[i].unlocked == true)
-      {
+    for (int i = 0; i < shouldBeLocked.Length; i++) {
+      if (shouldBeLocked[i].unlocked == true) {
         Debug.Log("Cannot unlock skill");
         return;
       }
@@ -65,32 +56,25 @@ public class UI_SkillTreeSlot : MonoBehaviour, IPointerEnterHandler, IPointerExi
     skillImage.color = Color.white;
   }
 
-  public void OnPointerEnter(PointerEventData eventData)
-  {
+  public void OnPointerEnter(PointerEventData eventData) {
     ui.skillToolTip.ShowToolTip(skillDescription, skillName, skillCost);
   }
 
-  public void OnPointerExit(PointerEventData eventData)
-  {
+  public void OnPointerExit(PointerEventData eventData) {
     ui.skillToolTip.HideToolTip();
   }
 
-  public void LoadData(GameData _data)
-  {
-    if (_data.skillTree.TryGetValue(skillName, out bool value))
-    {
+  public void LoadData(GameData _data) {
+    if (_data.skillTree.TryGetValue(skillName, out bool value)) {
       unlocked = value;
     }
   }
 
-  public void SaveData(ref GameData _data)
-  {
-    if (_data.skillTree.TryGetValue(skillName, out bool value))
-    {
+  public void SaveData(ref GameData _data) {
+    if (_data.skillTree.TryGetValue(skillName, out bool value)) {
       _data.skillTree.Remove(skillName);
       _data.skillTree.Add(skillName, unlocked);
-    }
-    else
+    } else
       _data.skillTree.Add(skillName, unlocked);
   }
 }

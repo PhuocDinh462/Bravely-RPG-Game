@@ -1,23 +1,19 @@
 using UnityEngine;
 
-public class PlayerStats : CharacterStats
-{
+public class PlayerStats : CharacterStats {
   Player player;
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
 
     player = GetComponent<Player>();
   }
 
-  public override void TakeDamage(int _damage)
-  {
+  public override void TakeDamage(int _damage) {
     base.TakeDamage(_damage);
   }
 
-  protected override void Die()
-  {
+  protected override void Die() {
     base.Die();
     player.Die();
 
@@ -27,12 +23,10 @@ public class PlayerStats : CharacterStats
     GetComponent<PlayerItemDrop>()?.GenerateDrop();
   }
 
-  protected override void DecreaseHealthBy(int _damage)
-  {
+  protected override void DecreaseHealthBy(int _damage) {
     base.DecreaseHealthBy(_damage);
 
-    if (_damage > GetMaxHealthValue() * .3f)
-    {
+    if (_damage > GetMaxHealthValue() * .3f) {
       player.SetupKnockbackPower(new Vector2(10, 6));
       player.fx.ScreenShake(player.fx.shakeHighDamage);
 
@@ -46,13 +40,11 @@ public class PlayerStats : CharacterStats
       currentArmor.Effect(player.transform);
   }
 
-  public override void OnEvasion()
-  {
+  public override void OnEvasion() {
     player.skill.dodge.CreateMirageOnDodge();
   }
 
-  public void CloneDoDamage(CharacterStats _targetStats, float _multiplier)
-  {
+  public void CloneDoDamage(CharacterStats _targetStats, float _multiplier) {
     if (TargetCanAvoidAttack(_targetStats)) return;
 
     int totalDamage = damage.GetValue() + strength.GetValue();

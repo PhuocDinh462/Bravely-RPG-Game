@@ -1,7 +1,6 @@
 using UnityEngine;
 
-public class Clone_Skill_Controller : MonoBehaviour
-{
+public class Clone_Skill_Controller : MonoBehaviour {
   private Player player;
   private SpriteRenderer sr;
   private Animator anim;
@@ -17,18 +16,15 @@ public class Clone_Skill_Controller : MonoBehaviour
   private bool canDuplicateClone;
   private float changeToDuplicate;
 
-  public void Awake()
-  {
+  public void Awake() {
     sr = GetComponent<SpriteRenderer>();
     anim = GetComponent<Animator>();
   }
 
-  public void Update()
-  {
+  public void Update() {
     cloneTimer -= Time.deltaTime;
 
-    if (cloneTimer < 0)
-    {
+    if (cloneTimer < 0) {
       sr.color = new Color(1, 1, 1, sr.color.a - (Time.deltaTime * colorLoosingSpeed));
 
       if (sr.color.a <= 0)
@@ -38,8 +34,7 @@ public class Clone_Skill_Controller : MonoBehaviour
   }
 
   public void SetupClone(Transform _newTransform, float _cloneDuration, bool _canAttack, Vector3 _offset,
-  Transform _closestEnemy, bool _canDuplicate, float _changeToDuplicate, Player _player, float _attackMultiplier)
-  {
+  Transform _closestEnemy, bool _canDuplicate, float _changeToDuplicate, Player _player, float _attackMultiplier) {
     if (_canAttack)
       anim.SetInteger("AttackNumber", Random.Range(1, 4));
 
@@ -54,19 +49,15 @@ public class Clone_Skill_Controller : MonoBehaviour
     FaceClosestTarget();
   }
 
-  private void AnimationTrigger()
-  {
+  private void AnimationTrigger() {
     cloneTimer = -.1f;
   }
 
-  private void AttackTrigger()
-  {
+  private void AttackTrigger() {
     Collider2D[] colliders = Physics2D.OverlapCircleAll(attackCheck.position, attackCheckRadius);
 
-    foreach (var hit in colliders)
-    {
-      if (hit.GetComponent<Enemy>())
-      {
+    foreach (var hit in colliders) {
+      if (hit.GetComponent<Enemy>()) {
         // player.stats.DoDamage(hit.GetComponent<CharacterStats>()); // Make a new function for clone damage to regular damage
 
         hit.GetComponent<Entity>().SetupKnockbackDir(transform);
@@ -76,18 +67,15 @@ public class Clone_Skill_Controller : MonoBehaviour
 
         playerStats.CloneDoDamage(enemyStats, attackMultiplier);
 
-        if (player.skill.clone.canApplyOnHitEffect)
-        {
+        if (player.skill.clone.canApplyOnHitEffect) {
           ItemData_Equipment weaponData = Inventory.instance.GetEquipment(EquipmentType.Weapon);
 
           if (weaponData)
             weaponData.Effect(hit.transform);
         }
 
-        if (canDuplicateClone)
-        {
-          if (Random.Range(0, 100) < changeToDuplicate)
-          {
+        if (canDuplicateClone) {
+          if (Random.Range(0, 100) < changeToDuplicate) {
             SkillManager.instance.clone.CreateClone(hit.transform, new Vector3(.5f * facingDir, 0));
           }
         }
@@ -95,10 +83,8 @@ public class Clone_Skill_Controller : MonoBehaviour
     }
   }
 
-  private void FaceClosestTarget()
-  {
-    if (closestEnemy && transform.position.x > closestEnemy.position.x)
-    {
+  private void FaceClosestTarget() {
+    if (closestEnemy && transform.position.x > closestEnemy.position.x) {
       facingDir = -1;
       transform.Rotate(0, 180, 0);
     }

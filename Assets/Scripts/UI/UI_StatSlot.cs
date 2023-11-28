@@ -2,8 +2,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
-{
+public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler {
   private UI ui;
 
   [SerializeField] private string statName;
@@ -14,27 +13,23 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
   [TextArea]
   [SerializeField] private string statDescription;
 
-  private void OnValidate()
-  {
+  private void OnValidate() {
     gameObject.name = "Stat - " + statName;
 
     if (statNameText)
       statNameText.text = statName;
   }
 
-  void Start()
-  {
+  void Start() {
     UpdateStatValueUI();
 
     ui = GetComponentInParent<UI>();
   }
 
-  public void UpdateStatValueUI()
-  {
+  public void UpdateStatValueUI() {
     PlayerStats playerStats = PlayerManager.instance.player.GetComponent<PlayerStats>();
 
-    if (playerStats)
-    {
+    if (playerStats) {
       statValueText.text = playerStats.GetStat(statType).GetValue().ToString();
 
       if (statType == StatType.health)
@@ -57,13 +52,11 @@ public class UI_StatSlot : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     }
   }
 
-  public void OnPointerEnter(PointerEventData eventData)
-  {
+  public void OnPointerEnter(PointerEventData eventData) {
     ui.statToolTip.ShowStatToolTip(statDescription);
   }
 
-  public void OnPointerExit(PointerEventData eventData)
-  {
+  public void OnPointerExit(PointerEventData eventData) {
     ui.statToolTip.HideStatToolTip();
   }
 }

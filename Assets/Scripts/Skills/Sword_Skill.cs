@@ -1,16 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public enum SwordType
-{
+public enum SwordType {
   Regular,
   Bounce,
   Pierce,
   Spin
 }
 
-public class Sword_Skill : Skill
-{
+public class Sword_Skill : Skill {
   public SwordType swordType = SwordType.Regular;
 
   [Header("Bounce info")]
@@ -56,8 +54,7 @@ public class Sword_Skill : Skill
 
   private GameObject[] dots;
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
 
     GenerateDots();
@@ -73,8 +70,7 @@ public class Sword_Skill : Skill
     spinUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockSpinSword);
   }
 
-  private void SetupGravity()
-  {
+  private void SetupGravity() {
     if (swordType == SwordType.Bounce)
       swordGravity = bounceGravity;
     else if (swordType == SwordType.Pierce)
@@ -83,22 +79,18 @@ public class Sword_Skill : Skill
       swordGravity = spinGravity;
   }
 
-  protected override void Update()
-  {
+  protected override void Update() {
     if (Input.GetKeyUp(KeyCode.Mouse1))
       finalDir = new Vector2(AimDirection().normalized.x * launchForce.x, AimDirection().normalized.y * launchForce.y);
 
-    if (Input.GetKey(KeyCode.Mouse1))
-    {
-      for (int i = 0; i < dots.Length; i++)
-      {
+    if (Input.GetKey(KeyCode.Mouse1)) {
+      for (int i = 0; i < dots.Length; i++) {
         dots[i].transform.position = DotsPosition(i * spaceBetweenDots);
       }
     }
   }
 
-  public void CreateSwords()
-  {
+  public void CreateSwords() {
     GameObject newSword = Instantiate(swordPrefab, player.transform.position, transform.rotation);
     Sword_Skill_controller newSwordScript = newSword.GetComponent<Sword_Skill_controller>();
 
@@ -117,8 +109,7 @@ public class Sword_Skill : Skill
   }
 
   #region Unlock region
-  protected override void CheckUnlock()
-  {
+  protected override void CheckUnlock() {
     UnlockSword();
     UnlockBounceSword();
     UnlockSpinSword();
@@ -127,41 +118,34 @@ public class Sword_Skill : Skill
     UnlockVulnerable();
   }
 
-  private void UnlockTimeStop()
-  {
+  private void UnlockTimeStop() {
     if (timeStopUnlockButton.unlocked)
       timeStopUnlocked = true;
   }
 
-  private void UnlockVulnerable()
-  {
+  private void UnlockVulnerable() {
     if (vulnerableUnlockButton.unlocked)
       vulnerableUnlocked = true;
   }
 
-  private void UnlockSword()
-  {
-    if (swordUnlockButton.unlocked)
-    {
+  private void UnlockSword() {
+    if (swordUnlockButton.unlocked) {
       swordType = SwordType.Regular;
       swordUnlocked = true;
     }
   }
 
-  private void UnlockBounceSword()
-  {
+  private void UnlockBounceSword() {
     if (bounceUnlockButton.unlocked)
       swordType = SwordType.Bounce;
   }
 
-  private void UnlockPierceSword()
-  {
+  private void UnlockPierceSword() {
     if (pierceUnlockButton.unlocked)
       swordType = SwordType.Pierce;
   }
 
-  private void UnlockSpinSword()
-  {
+  private void UnlockSpinSword() {
     if (spinUnlockButton.unlocked)
       swordType = SwordType.Spin;
   }
@@ -169,8 +153,7 @@ public class Sword_Skill : Skill
   #endregion
 
   #region Aim region
-  public Vector2 AimDirection()
-  {
+  public Vector2 AimDirection() {
     Vector2 playerPosition = player.transform.position;
     Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
     Vector2 direction = mousePosition - playerPosition;
@@ -178,26 +161,21 @@ public class Sword_Skill : Skill
     return direction;
   }
 
-  public void DotsActive(bool _isActive)
-  {
-    for (int i = 0; i < dots.Length; i++)
-    {
+  public void DotsActive(bool _isActive) {
+    for (int i = 0; i < dots.Length; i++) {
       dots[i].SetActive(_isActive);
     }
   }
 
-  private void GenerateDots()
-  {
+  private void GenerateDots() {
     dots = new GameObject[numberOfDots];
-    for (int i = 0; i < numberOfDots; i++)
-    {
+    for (int i = 0; i < numberOfDots; i++) {
       dots[i] = Instantiate(dotPrefab, player.transform.position, Quaternion.identity, dotsParent);
       dots[i].SetActive(false);
     }
   }
 
-  private Vector2 DotsPosition(float t)
-  {
+  private Vector2 DotsPosition(float t) {
     Vector2 position = (Vector2)player.transform.position + new Vector2(
       AimDirection().normalized.x * launchForce.x,
       AimDirection().normalized.y * launchForce.y) * t + .5f * (Physics2D.gravity * swordGravity) * (t * t);

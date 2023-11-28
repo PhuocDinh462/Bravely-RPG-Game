@@ -2,8 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Clone_Skill : Skill
-{
+public class Clone_Skill : Skill {
   [Header("Clone info")]
   [SerializeField] private float attackMultiplier;
   [SerializeField] private GameObject clonePrefab;
@@ -31,8 +30,7 @@ public class Clone_Skill : Skill
   public bool crystalInsteadOfClone;
 
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
 
     cloneAttackUnlockButton.GetComponent<Button>().onClick.AddListener(UnlockCloneAttack);
@@ -42,55 +40,44 @@ public class Clone_Skill : Skill
   }
 
   #region Unlock region
-  protected override void CheckUnlock()
-  {
+  protected override void CheckUnlock() {
     UnlockCloneAttack();
     UnlockAggressiveClone();
     UnlockMultiClone();
     UnlockCrystalInstead();
   }
 
-  private void UnlockCloneAttack()
-  {
-    if (cloneAttackUnlockButton.unlocked)
-    {
+  private void UnlockCloneAttack() {
+    if (cloneAttackUnlockButton.unlocked) {
       canAttack = true;
       attackMultiplier = cloneAttackMultiplier;
     }
   }
 
-  private void UnlockAggressiveClone()
-  {
-    if (aggressiveCloneUnlockButton.unlocked)
-    {
+  private void UnlockAggressiveClone() {
+    if (aggressiveCloneUnlockButton.unlocked) {
       canApplyOnHitEffect = true;
       attackMultiplier = aggressiveCloneAttackMultiplier;
     }
   }
 
-  private void UnlockMultiClone()
-  {
-    if (multipleUnlockButton.unlocked)
-    {
+  private void UnlockMultiClone() {
+    if (multipleUnlockButton.unlocked) {
       canDuplicateClone = true;
       attackMultiplier = multiCloneAttackMultiplier;
     }
   }
 
-  private void UnlockCrystalInstead()
-  {
-    if (crystalInsteadUnlockButton.unlocked)
-    {
+  private void UnlockCrystalInstead() {
+    if (crystalInsteadUnlockButton.unlocked) {
       crystalInsteadOfClone = true;
     }
   }
 
   #endregion
 
-  public void CreateClone(Transform _clonePosition, Vector3 _offset)
-  {
-    if (crystalInsteadOfClone)
-    {
+  public void CreateClone(Transform _clonePosition, Vector3 _offset) {
+    if (crystalInsteadOfClone) {
       SkillManager.instance.crystal.CreateCrystal();
       return;
     }
@@ -101,13 +88,11 @@ public class Clone_Skill : Skill
     _offset, FindClosestEnemy(newClone.transform), canDuplicateClone, changeToDuplicate, player, attackMultiplier);
   }
 
-  public void CreateCloneWithDelay(Transform _enemyTransform)
-  {
+  public void CreateCloneWithDelay(Transform _enemyTransform) {
     StartCoroutine(CloneDelayCoroutine(_enemyTransform, new Vector3(2 * player.facingDir, 0)));
   }
 
-  private IEnumerator CloneDelayCoroutine(Transform _transform, Vector3 _offset)
-  {
+  private IEnumerator CloneDelayCoroutine(Transform _transform, Vector3 _offset) {
     yield return new WaitForSeconds(.4f);
     CreateClone(_transform, _offset);
   }

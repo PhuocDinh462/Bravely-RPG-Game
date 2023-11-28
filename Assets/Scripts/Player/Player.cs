@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Player : Entity
-{
+public class Player : Entity {
   [Header("Attack details")]
   public Vector2[] attackMovement;
   public float counterAttackDuration = .2f;
@@ -44,8 +43,7 @@ public class Player : Entity
   public PlayerDeadState deadState { get; private set; }
   #endregion
 
-  protected override void Awake()
-  {
+  protected override void Awake() {
     base.Awake();
     stateMachine = new PlayerStateMachine();
 
@@ -67,8 +65,7 @@ public class Player : Entity
     deadState = new PlayerDeadState(this, stateMachine, "Die");
   }
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
 
     fx = GetComponent<PlayerFX>();
@@ -81,8 +78,7 @@ public class Player : Entity
     defaultDashSpeed = dashSpeed;
   }
 
-  protected override void Update()
-  {
+  protected override void Update() {
     if (Time.timeScale == 0) return;
 
     base.Update();
@@ -96,8 +92,7 @@ public class Player : Entity
       Inventory.instance.UseFlask();
   }
 
-  public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
-  {
+  public override void SlowEntityBy(float _slowPercentage, float _slowDuration) {
     moveSpeed *= 1 - _slowPercentage;
     jumpForce *= 1 - _slowPercentage;
     dashSpeed *= 1 - _slowPercentage;
@@ -106,8 +101,7 @@ public class Player : Entity
     Invoke("ReturnDefaultSpeed", _slowDuration);
   }
 
-  public override void ReturnDefaultSpeed()
-  {
+  public override void ReturnDefaultSpeed() {
     base.ReturnDefaultSpeed();
 
     moveSpeed = defaultMoveSpeed;
@@ -115,19 +109,16 @@ public class Player : Entity
     dashSpeed = defaultDashSpeed;
   }
 
-  public void AssignNewSword(GameObject _newSword)
-  {
+  public void AssignNewSword(GameObject _newSword) {
     sword = _newSword;
   }
 
-  public void CatchTheSword()
-  {
+  public void CatchTheSword() {
     stateMachine.ChangeState(catchSword);
     Destroy(sword);
   }
 
-  public IEnumerator BusyFor(float _seconds)
-  {
+  public IEnumerator BusyFor(float _seconds) {
     isBusy = true;
     yield return new WaitForSeconds(_seconds);
     isBusy = false;
@@ -135,14 +126,12 @@ public class Player : Entity
 
   public void AnimationTrigger() => stateMachine.currentState.AnimationFinishTrigger();
 
-  private void CheckForDashInput()
-  {
+  private void CheckForDashInput() {
     if (IsWallDetected()) return;
 
     if (skill.dash.dashUnlocked == false) return;
 
-    if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill())
-    {
+    if (Input.GetKeyDown(KeyCode.LeftShift) && SkillManager.instance.dash.CanUseSkill()) {
       dashDir = Input.GetAxisRaw("Horizontal");
 
       if (dashDir == 0)
@@ -152,15 +141,13 @@ public class Player : Entity
     }
   }
 
-  public override void Die()
-  {
+  public override void Die() {
     base.Die();
 
     stateMachine.ChangeState(deadState);
   }
 
-  protected override void SetupZeroKnockbackPower()
-  {
+  protected override void SetupZeroKnockbackPower() {
     knockbackPower = new Vector2(0, 0);
   }
 }

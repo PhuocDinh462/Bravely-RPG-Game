@@ -1,30 +1,24 @@
 using UnityEngine;
 
-public class PlayerDeadState : PlayerState
-{
-  public PlayerDeadState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
-  {
+public class PlayerDeadState : PlayerState {
+  public PlayerDeadState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName) {
   }
 
-  public override void AnimationFinishTrigger()
-  {
+  public override void AnimationFinishTrigger() {
     base.AnimationFinishTrigger();
   }
 
-  public override void Enter()
-  {
+  public override void Enter() {
     base.Enter();
 
     GameObject.Find("Canvas").GetComponent<UI>().SwitchOnEndScreen();
   }
 
-  public override void Exit()
-  {
+  public override void Exit() {
     base.Exit();
   }
 
-  public override void Update()
-  {
+  public override void Update() {
     base.Update();
 
     player.SetZeroVelocity();

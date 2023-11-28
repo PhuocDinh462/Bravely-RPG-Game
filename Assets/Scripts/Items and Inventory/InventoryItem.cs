@@ -1,13 +1,11 @@
 using System;
 
 [Serializable]
-public class InventoryItem
-{
+public class InventoryItem {
   public ItemData data;
   public int stackSize;
 
-  public InventoryItem(ItemData _newItemData)
-  {
+  public InventoryItem(ItemData _newItemData) {
     data = _newItemData;
     AddStack();
   }

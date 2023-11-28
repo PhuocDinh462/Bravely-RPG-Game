@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class UI_FadeScreen : MonoBehaviour
-{
+public class UI_FadeScreen : MonoBehaviour {
   private Animator anim;
 
-  void Start()
-  {
+  void Start() {
     anim = GetComponent<Animator>();
   }
 

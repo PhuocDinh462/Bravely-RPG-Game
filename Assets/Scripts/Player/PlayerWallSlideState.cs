@@ -1,30 +1,24 @@
 using UnityEngine;
 
-public class PlayerWallSlideState : PlayerState
-{
-  public PlayerWallSlideState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
-  {
+public class PlayerWallSlideState : PlayerState {
+  public PlayerWallSlideState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName) {
   }
 
-  public override void Enter()
-  {
+  public override void Enter() {
     base.Enter();
   }
 
-  public override void Exit()
-  {
+  public override void Exit() {
     base.Exit();
   }
 
-  public override void Update()
-  {
+  public override void Update() {
     base.Update();
 
     if (!player.IsWallDetected())
       stateMachine.ChangeState(player.airState);
 
-    if (Input.GetKeyDown(KeyCode.Space))
-    {
+    if (Input.GetKeyDown(KeyCode.Space)) {
       stateMachine.ChangeState(player.wallJump);
       return;
     }

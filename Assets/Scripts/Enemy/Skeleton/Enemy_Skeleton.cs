@@ -1,5 +1,4 @@
-public class Enemy_Skeleton : Enemy
-{
+public class Enemy_Skeleton : Enemy {
   #region States
   public SkeletonIdleState idleState { get; private set; }
   public SkeletonMoveState moveState { get; private set; }
@@ -9,8 +8,7 @@ public class Enemy_Skeleton : Enemy
   public SkeletonDeadState deadState { get; private set; }
   #endregion
 
-  protected override void Awake()
-  {
+  protected override void Awake() {
     base.Awake();
 
     idleState = new SkeletonIdleState(this, stateMachine, "Idle", this);
@@ -21,29 +19,24 @@ public class Enemy_Skeleton : Enemy
     deadState = new SkeletonDeadState(this, stateMachine, "Idle", this);
   }
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
     stateMachine.Initialize(idleState);
   }
 
-  protected override void Update()
-  {
+  protected override void Update() {
     base.Update();
   }
 
-  public override bool CanBeStunned()
-  {
-    if (base.CanBeStunned())
-    {
+  public override bool CanBeStunned() {
+    if (base.CanBeStunned()) {
       stateMachine.ChangeState(stunnedState);
       return true;
     }
     return false;
   }
 
-  public override void Die()
-  {
+  public override void Die() {
     base.Die();
 
     stateMachine.ChangeState(deadState);

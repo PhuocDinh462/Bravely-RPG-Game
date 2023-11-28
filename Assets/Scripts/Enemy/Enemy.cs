@@ -1,8 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : Entity
-{
+public class Enemy : Entity {
   [SerializeField] protected LayerMask whatIsPlayer;
 
   [Header("Stunned info")]
@@ -30,52 +29,43 @@ public class Enemy : Entity
   public string lastAnimBoolName { get; private set; }
 
 
-  protected override void Start()
-  {
+  protected override void Start() {
     base.Start();
 
     fx = GetComponent<EntityFX>();
   }
 
-  protected override void Awake()
-  {
+  protected override void Awake() {
     base.Awake();
     stateMachine = new EnemyStateMachine();
     defaultMoveSpeed = moveSpeed;
   }
 
-  protected override void Update()
-  {
+  protected override void Update() {
     base.Update();
     stateMachine.currentState.Update();
   }
 
   public virtual void AssignLastAnimName(string _animBoolName) => lastAnimBoolName = _animBoolName;
 
-  public override void SlowEntityBy(float _slowPercentage, float _slowDuration)
-  {
+  public override void SlowEntityBy(float _slowPercentage, float _slowDuration) {
     moveSpeed *= 1 - _slowPercentage;
     anim.speed *= 1 - _slowPercentage;
 
     Invoke("ReturnDefaultSpeed", _slowDuration);
   }
 
-  public override void ReturnDefaultSpeed()
-  {
+  public override void ReturnDefaultSpeed() {
     base.ReturnDefaultSpeed();
 
     moveSpeed = defaultMoveSpeed;
   }
 
-  public virtual void FreezeTime(bool _timeFrozen)
-  {
-    if (_timeFrozen)
-    {
+  public virtual void FreezeTime(bool _timeFrozen) {
+    if (_timeFrozen) {
       moveSpeed = 0;
       anim.speed = 0;
-    }
-    else
-    {
+    } else {
       moveSpeed = defaultMoveSpeed;
       anim.speed = 1;
     }
@@ -83,31 +73,26 @@ public class Enemy : Entity
 
   public virtual void FreezeTimeFor(float _duration) => StartCoroutine(FreezeTimeCoroutine(_duration));
 
-  protected virtual IEnumerator FreezeTimeCoroutine(float _seconds)
-  {
+  protected virtual IEnumerator FreezeTimeCoroutine(float _seconds) {
     FreezeTime(true);
     yield return new WaitForSeconds(_seconds);
     FreezeTime(false);
   }
 
   #region Counter Attack Window
-  public virtual void OpenCounterAttackWindow()
-  {
+  public virtual void OpenCounterAttackWindow() {
     canBeStunned = true;
     counterImage.SetActive(true);
   }
 
-  public virtual void CloseCounterAttackWindow()
-  {
+  public virtual void CloseCounterAttackWindow() {
     canBeStunned = false;
     counterImage.SetActive(false);
   }
   #endregion
 
-  public virtual bool CanBeStunned()
-  {
-    if (canBeStunned)
-    {
+  public virtual bool CanBeStunned() {
+    if (canBeStunned) {
       CloseCounterAttackWindow();
       return true;
     }
@@ -118,8 +103,7 @@ public class Enemy : Entity
 
   public virtual RaycastHit2D isPlayerDetected() => Physics2D.Raycast(wallCheck.position, Vector2.right * facingDir, playerDetectDistance, whatIsPlayer);
 
-  protected override void OnDrawGizmos()
-  {
+  protected override void OnDrawGizmos() {
     base.OnDrawGizmos();
 
     Gizmos.color = Color.yellow;

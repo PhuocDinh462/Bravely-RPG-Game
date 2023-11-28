@@ -1,11 +1,8 @@
-public class PlayerDashState : PlayerState
-{
-  public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
-  {
+public class PlayerDashState : PlayerState {
+  public PlayerDashState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName) {
   }
 
-  public override void Enter()
-  {
+  public override void Enter() {
     base.Enter();
 
     player.skill.dash.CloneOnDash();
@@ -14,8 +11,7 @@ public class PlayerDashState : PlayerState
     player.stats.MakeInvincible(true);
   }
 
-  public override void Exit()
-  {
+  public override void Exit() {
     base.Exit();
 
     player.skill.dash.CloneOnArrival();
@@ -24,8 +20,7 @@ public class PlayerDashState : PlayerState
     player.stats.MakeInvincible(false);
   }
 
-  public override void Update()
-  {
+  public override void Update() {
     base.Update();
 
     if (!player.IsGroundDetected() && player.IsWallDetected())

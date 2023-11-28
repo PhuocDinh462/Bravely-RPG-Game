@@ -1,13 +1,10 @@
 using UnityEngine;
 
-public class ItemObject_Trigger : MonoBehaviour
-{
+public class ItemObject_Trigger : MonoBehaviour {
   private ItemObject myItemObject => GetComponentInParent<ItemObject>();
 
-  private void OnTriggerEnter2D(Collider2D collision)
-  {
-    if (collision.GetComponent<Player>())
-    {
+  private void OnTriggerEnter2D(Collider2D collision) {
+    if (collision.GetComponent<Player>()) {
       if (collision.GetComponent<CharacterStats>().isDead) return;
 
       Debug.Log("Picked up item");

@@ -1,33 +1,27 @@
 using UnityEngine;
 
-public class Skill : MonoBehaviour
-{
+public class Skill : MonoBehaviour {
   public float cooldown;
   public float cooldownTimer;
 
   protected Player player;
 
-  protected virtual void Start()
-  {
+  protected virtual void Start() {
     player = PlayerManager.instance.player;
 
     Invoke("CheckUnlock", .1f);
   }
 
-  protected virtual void Update()
-  {
+  protected virtual void Update() {
     cooldownTimer -= Time.deltaTime;
   }
 
-  protected virtual void CheckUnlock()
-  {
+  protected virtual void CheckUnlock() {
 
   }
 
-  public virtual bool CanUseSkill()
-  {
-    if (cooldownTimer < 0)
-    {
+  public virtual bool CanUseSkill() {
+    if (cooldownTimer < 0) {
       UseSkill();
       cooldownTimer = cooldown;
       return true;
@@ -37,26 +31,21 @@ public class Skill : MonoBehaviour
     return false;
   }
 
-  public virtual void UseSkill()
-  {
+  public virtual void UseSkill() {
 
   }
 
-  protected virtual Transform FindClosestEnemy(Transform _checkTransform)
-  {
+  protected virtual Transform FindClosestEnemy(Transform _checkTransform) {
     Collider2D[] colliders = Physics2D.OverlapCircleAll(_checkTransform.position, 25);
 
     float closestDistance = Mathf.Infinity;
     Transform closestEnemy = null;
 
-    foreach (var hit in colliders)
-    {
-      if (hit.GetComponent<Enemy>())
-      {
+    foreach (var hit in colliders) {
+      if (hit.GetComponent<Enemy>()) {
         float distanceToEnemy = Vector2.Distance(_checkTransform.position, hit.transform.position);
 
-        if (distanceToEnemy < closestDistance)
-        {
+        if (distanceToEnemy < closestDistance) {
           closestDistance = distanceToEnemy;
           closestEnemy = hit.transform;
         }

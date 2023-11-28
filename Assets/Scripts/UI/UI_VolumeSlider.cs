@@ -2,8 +2,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 
-public class UI_VolumeSlider : MonoBehaviour
-{
+public class UI_VolumeSlider : MonoBehaviour {
   public Slider slider;
   public string parametr;
 
@@ -12,8 +11,7 @@ public class UI_VolumeSlider : MonoBehaviour
 
   public void SliderValue(float _value) => audioMixer.SetFloat(parametr, Mathf.Log10(_value) * multiplier);
 
-  public void LoadSlider(float _value)
-  {
+  public void LoadSlider(float _value) {
     if (_value >= .001f)
       slider.value = _value;
   }

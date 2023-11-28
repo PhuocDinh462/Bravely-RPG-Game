@@ -1,18 +1,15 @@
 using UnityEngine;
 
-public class PlayerPrimaryAttackState : PlayerState
-{
+public class PlayerPrimaryAttackState : PlayerState {
   public int comboCounter { get; private set; }
   private float lastTimeAttack;
   private float comboWindow = 2;
 
-  public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName)
-  {
+  public PlayerPrimaryAttackState(Player _player, PlayerStateMachine _stateMachine, string _animBoolName) : base(_player, _stateMachine, _animBoolName) {
 
   }
 
-  public override void Enter()
-  {
+  public override void Enter() {
     base.Enter();
 
     // AudioManager.instance.PlaySFX(2); // Attack sound effect
@@ -33,8 +30,7 @@ public class PlayerPrimaryAttackState : PlayerState
     stateTimer = .1f;
   }
 
-  public override void Exit()
-  {
+  public override void Exit() {
     base.Exit();
 
     player.StartCoroutine("BusyFor", .15f);
@@ -43,8 +39,7 @@ public class PlayerPrimaryAttackState : PlayerState
     lastTimeAttack = Time.time;
   }
 
-  public override void Update()
-  {
+  public override void Update() {
     base.Update();
 
     if (stateTimer < 0)

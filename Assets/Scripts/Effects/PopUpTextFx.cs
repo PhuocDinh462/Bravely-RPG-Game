@@ -1,8 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-public class PopUpTextFx : MonoBehaviour
-{
+public class PopUpTextFx : MonoBehaviour {
   private TextMeshPro myText;
 
   [SerializeField] private float speed;
@@ -13,19 +12,16 @@ public class PopUpTextFx : MonoBehaviour
 
   private float textTimer;
 
-  void Start()
-  {
+  void Start() {
     myText = GetComponent<TextMeshPro>();
     textTimer = lifeTime;
   }
 
-  void Update()
-  {
+  void Update() {
     transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, transform.position.y + 1), speed * Time.deltaTime);
     textTimer -= Time.deltaTime;
 
-    if (textTimer < 0)
-    {
+    if (textTimer < 0) {
       float alpha = myText.color.a - colorDisappearanceSpeed * Time.deltaTime;
       myText.color = new Color(myText.color.r, myText.color.g, myText.color.b, alpha);
 
