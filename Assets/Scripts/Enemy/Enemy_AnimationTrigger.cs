@@ -1,7 +1,7 @@
 using UnityEngine;
 
-public class Enemy_SkeletonAnimationTrigger : MonoBehaviour {
-  private Enemy_Skeleton enemy => GetComponentInParent<Enemy_Skeleton>();
+public class Enemy_AnimationTrigger : MonoBehaviour {
+  private Enemy enemy => GetComponentInParent<Enemy>();
 
   private void AnimationTrigger() {
     enemy.AnimationFinishTrigger();
