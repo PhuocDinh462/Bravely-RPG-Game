@@ -118,7 +118,7 @@ public class CharacterStats : MonoBehaviour {
   public virtual void DoDamage(CharacterStats _targetStats) {
     bool criticalStrike = false;
 
-    if (TargetCanAvoidAttack(_targetStats)) return;
+    if (TargetCanAvoidAttack(_targetStats) || _targetStats.isInvincible) return;
 
     _targetStats.GetComponent<Entity>().SetupKnockbackDir(transform);
 
