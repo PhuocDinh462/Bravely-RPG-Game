@@ -212,7 +212,8 @@ public class CharacterStats : MonoBehaviour {
     if (_shock && canAppleShock) {
       if (!isShocked) {
         ApplyShock(_shock);
-      } else {
+      }
+      else {
         if (GetComponent<Player>()) return;
 
         HitNearestTargetWithShockStrike();

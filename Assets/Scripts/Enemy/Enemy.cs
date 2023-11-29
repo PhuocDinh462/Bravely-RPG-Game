@@ -22,6 +22,7 @@ public class Enemy : Entity {
   private float defaultMoveSpeed;
 
   [Header("Attack info")]
+  public float aggroDistance = 2;
   public float attackDistance;
   public float attackCooldown;
   public float minAttackCooldown;
@@ -70,7 +71,8 @@ public class Enemy : Entity {
     if (_timeFrozen) {
       moveSpeed = 0;
       anim.speed = 0;
-    } else {
+    }
+    else {
       moveSpeed = defaultMoveSpeed;
       anim.speed = 1;
     }

@@ -20,7 +20,7 @@ public class SlimeGroundedState : EnemyState {
   public override void Update() {
     base.Update();
 
-    if (enemy.isPlayerDetected() || Vector2.Distance(enemy.transform.position, player.transform.position) < 2)
+    if (enemy.isPlayerDetected() || Vector2.Distance(enemy.transform.position, player.transform.position) < enemy.aggroDistance)
       stateMachine.ChangeState(enemy.battleState);
   }
 }

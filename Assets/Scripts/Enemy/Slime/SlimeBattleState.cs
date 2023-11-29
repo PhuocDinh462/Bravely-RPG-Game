@@ -28,7 +28,8 @@ public class SlimeBattleState : EnemyState {
         if (CanAttack())
           stateMachine.ChangeState(enemy.attackState);
       }
-    } else {
+    }
+    else {
       if (stateTimer < 0 || Vector2.Distance(player.transform.position, enemy.transform.position) > 10)
         stateMachine.ChangeState(enemy.idleState);
     }
@@ -37,6 +38,9 @@ public class SlimeBattleState : EnemyState {
       moveDir = 1;
     else if (player.position.x < enemy.transform.position.x)
       moveDir = -1;
+
+    if (enemy.isPlayerDetected() && enemy.isPlayerDetected().distance < enemy.attackDistance - .1f)
+      return;
 
     enemy.SetVelocity(enemy.moveSpeed * moveDir, rb.velocity.y);
   }
